@@ -1,0 +1,481 @@
+{% extends "backend/base_ui.html" %} {% load static %} {% load custom_filters %}
+{% block konten %}
+
+<div>
+  <div class="pagetitle">
+    <h1>Surat Rekomenadi Kelompok Tani</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+        <li class="breadcrumb-item active">Surat Rekomenadi Kelompok Tani</li>
+      </ol>
+    </nav>
+  </div>
+  {% if value %}
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Surat Rekomenadi Kelompok Tani</h5>
+
+      <!-- General Form Elements -->
+
+      <form method="post" action="{% url 'edit_suketrekkeltani' value.id %}">
+        {% csrf_token %}
+        <div class="row mb-3">
+          <label for="inputNama" class="col-sm-2 col-form-label">Nama</label>
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputNama"
+              value="{{ value.nama }}"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label for="inputJabatan" class="col-sm-2 col-form-label"
+            >Jabatan</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputJabatan"
+              value="{{ value.jabatan }}"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputSekretariat" class="col-sm-2 col-form-label"
+            >Sekretariat</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputSekretariat"
+              value="{{ value.sekretariat }}"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputTempat" class="col-sm-2 col-form-label"
+            >Letak rekomendasi</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputTempat"
+              value="{{ value.tempat }}"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputBantuan" class="col-sm-2 col-form-label"
+            >Permohonan bantuan</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputBantuan"
+              value="{{ value.bantuan }}"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputTujuan" class="col-sm-2 col-form-label"
+            >Bantuan dari</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputTujuan"
+              value="{{ value.tujuan }}"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="col-sm-2 col-form-label">Submit Here</label>
+          <div class="col-sm-10">
+            <a href="{% url 'suketrekkeltani' %}">
+              <button class="btn btn-secondary">Cancel</button>
+            </a>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- End General Form Elements -->
+    </div>
+  </div>
+  {% else %}
+  <div class="container-fluid">
+    <div class="d-flex justify-content-end mb-3">
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#formModal"
+      >
+        Tambahkan surat
+      </button>
+    </div>
+    <div class="table-responsive">
+      <table class="table datatable">
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th data-type="date" data-format="YYYY/DD/MM">Date</th>
+            <th>Status</th>
+            <th class="text-center">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if user.is_superuser %} {% for surat in suket %}
+
+          <tr>
+            <td>
+              <a href="{% url 'detail_suketrekkeltani' surat.id %}"
+                >{{ surat.nama }}</a
+              >
+            </td>
+            <td>{{ surat.date }}</td>
+            {% if surat.status == 'review' %}
+            <td class="text-warning fw-bold">Proses Review</td>
+            {% elif surat.status == 'approved' %}
+            <td class="text-success fw-bold">Disetujui</td>
+            {% elif surat.status == 'rejected' %}
+            <td class="text-danger fw-bold">Ditolak</td>
+            {% endif %} {% if user.is_superuser %}
+
+            <td class="text-center">
+              <!-- Btn-group untuk aksi -->
+              <div
+                class="btn-group gap-3"
+                role="group"
+                aria-label="Action buttons"
+              >
+                <button type="button" class="btn btn-success btn-sm rounded-3">
+                  <a
+                    href="{% url 'setujui_suketrekeltani' surat.id %}"
+                    class="text-decoration-none text-white"
+                    >Setujui</a
+                  >
+                </button>
+                <button type="button" class="btn btn-danger btn-sm rounded-3">
+                  <a
+                    href="{% url 'tolak_suketrekeltani' surat.id %}"
+                    class="text-decoration-none text-white"
+                    >Tolak</a
+                  >
+                </button>
+              </div>
+            </td>
+
+            {% else %}
+            <td class="text-center">
+              <!-- Btn-group untuk aksi -->
+              <div
+                class="btn-group gap-3"
+                role="group"
+                aria-label="Action buttons"
+              >
+                <a
+                  href="{% url 'edit_suketrekkeltani' surat.id %}"
+                  class="text-decoration-none"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-warning btn-sm rounded-3"
+                  >
+                    Edit
+                  </button>
+                </a>
+                <a
+                  href="{% url 'delete_suketrekkeltani' surat.id %}"
+                  class="text-decoration-none"
+                >
+                  <button type="button" class="btn btn-danger btn-sm rounded-3">
+                    Delete
+                  </button>
+                </a>
+
+                {% if surat.status == 'approved' %}
+
+                <a
+                  href="{% url 'print_suketrekkeltani' surat.id %}"
+                  class="text-decoration-none"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm rounded-3"
+                  >
+                    Print
+                  </button>
+                </a>
+                {% else %}
+
+                <button
+                  type="button"
+                  class="btn btn-primary btn-sm rounded-3"
+                  disabled
+                >
+                  <a
+                    href="{% url 'print_suketrekkeltani' surat.id %}"
+                    class="text-decoration-none text-white"
+                  >
+                    Print</a
+                  >
+                </button>
+
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+          </tr>
+          {% endfor %} {% else %} {% for surat in private %}
+
+          <tr>
+            <td>
+              <a href="{% url 'detail_suketrekkeltani' surat.id %}"
+                >{{ surat.nama }}</a
+              >
+            </td>
+            <td>{{ surat.date }}</td>
+            {% if surat.status == 'review' %}
+            <td class="text-warning fw-bold">Proses Review</td>
+            {% elif surat.status == 'approved' %}
+            <td class="text-success fw-bold">Disetujui</td>
+            {% elif surat.status == 'rejected' %}
+            <td class="text-danger fw-bold">Ditolak</td>
+            {% endif %} {% if user.is_superuser %}
+
+            <td class="text-center">
+              <!-- Btn-group untuk aksi -->
+              <div
+                class="btn-group gap-3"
+                role="group"
+                aria-label="Action buttons"
+              >
+                <button type="button" class="btn btn-success btn-sm rounded-3">
+                  <a
+                    href="{% url 'setujui_suketrekeltani' surat.id %}"
+                    class="text-decoration-none text-white"
+                    >Setujui</a
+                  >
+                </button>
+                <button type="button" class="btn btn-danger btn-sm rounded-3">
+                  <a
+                    href="{% url 'tolak_suketrekeltani' surat.id %}"
+                    class="text-decoration-none text-white"
+                    >Tolak</a
+                  >
+                </button>
+              </div>
+            </td>
+
+            {% else %}
+            <td class="text-center">
+              <!-- Btn-group untuk aksi -->
+              <div
+                class="btn-group gap-3"
+                role="group"
+                aria-label="Action buttons"
+              >
+                <a
+                  href="{% url 'edit_suketrekkeltani' surat.id %}"
+                  class="text-decoration-none"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-warning btn-sm rounded-3"
+                  >
+                    Edit
+                  </button>
+                </a>
+                <a
+                  href="{% url 'delete_suketrekkeltani' surat.id %}"
+                  class="text-decoration-none"
+                >
+                  <button type="button" class="btn btn-danger btn-sm rounded-3">
+                    Delete
+                  </button>
+                </a>
+
+                {% if surat.status == 'approved' %}
+
+                <a
+                  href="{% url 'print_suketrekkeltani' surat.id %}"
+                  class="text-decoration-none"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm rounded-3"
+                  >
+                    Print
+                  </button>
+                </a>
+                {% else %}
+
+                <button
+                  type="button"
+                  class="btn btn-primary btn-sm rounded-3"
+                  disabled
+                >
+                  <a
+                    href="{% url 'print_suketrekkeltani' surat.id %}"
+                    class="text-decoration-none text-white"
+                  >
+                    Print</a
+                  >
+                </button>
+
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+          </tr>
+          {% endfor %} {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endif %}
+
+  <div
+    class="modal fade"
+    id="formModal"
+    tabindex="-1"
+    aria-labelledby="formModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="formModalLabel">Tambahkan Surat</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Surat Rekomenadi Kelompok Tani</h5>
+
+              <!-- General Form Elements -->
+
+              <form method="post">
+                {% csrf_token %}
+                <div class="row mb-3">
+                  <label for="inputNama" class="col-sm-2 col-form-label"
+                    >Nama</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputNama"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="inputJabatan" class="col-sm-2 col-form-label"
+                    >Jabatan</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputJabatan"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputSekretariat" class="col-sm-2 col-form-label"
+                    >Sekretariat</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputSekretariat"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputTempat" class="col-sm-2 col-form-label"
+                    >Letak rekomendasi</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputTempat"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputBantuan" class="col-sm-2 col-form-label"
+                    >Permohonan bantuan</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputBantuan"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputTujuan" class="col-sm-2 col-form-label"
+                    >Bantuan dari</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputTujuan"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Submit Here</label>
+                  <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </form>
+
+              <!-- End General Form Elements -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock konten %}

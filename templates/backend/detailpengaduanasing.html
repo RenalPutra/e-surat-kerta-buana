@@ -1,0 +1,73 @@
+{% extends "backend/base_ui.html" %} {% load static %} {% load custom_filters %}
+{% block konten %}
+
+<div class="pagetitle">
+  <h1>Detail Data Pengaduan Asing</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+      <li class="breadcrumb-item">Aduan</li>
+      <li class="breadcrumb-item active">Detail Aduan Asing</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+
+<section class="section profile">
+  <div class="row">
+        <div class="col-xl-12">
+      <div class="card">
+        <div class="card-body pt-3">
+          <!-- Bordered Tabs -->
+          
+          <div class="tab-content pt-2">
+            <div
+              class="tab-pane fade show active profile-overview"
+              id="profile-overview"
+            >
+              <h5 class="card-title">Detail Data Aduan</h5>
+
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Name</div>
+                <div class="col-lg-10 col-md-9">{{aduans.name}}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Email</div>
+                <div class="col-lg-10 col-md-9">{{aduans.email}}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Telepon</div>
+                <div class="col-lg-10 col-md-9">{{aduans.phone}}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Message</div>
+                <div class="col-lg-10 col-md-9">
+                  <div class="message-box">
+                    {{aduans.message}}
+                  </div>
+                </div>
+              </div>
+
+              
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">KTP</div>
+                <div class="col-lg-10 col-md-9">
+                  <a href="{{aduans.ktp}}">
+                    {{aduans.ktp|filename}}</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Bordered Tabs -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- End #main -->
+{% endblock konten %}

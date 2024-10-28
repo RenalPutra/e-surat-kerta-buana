@@ -1,0 +1,99 @@
+{% extends "backend/base_ui.html" %} {% load static %} {% load custom_filters %}
+{% block konten %}
+
+<div class="pagetitle">
+  <h1>Surat Keterangan Beda Nama</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+      <li class="breadcrumb-item active">Surat Keterangan Beda Nama</li>
+    </ol>
+  </nav>
+</div>
+
+<section class="section profile">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-body pt-3">
+          <!-- Bordered Tabs -->
+
+          <div class="tab-content pt-2">
+            <div
+              class="tab-pane fade show active profile-overview"
+              id="profile-overview"
+            >
+              <h5 class="card-title">Detail Surat Keterangan KTP Beda Nama</h5>
+
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Nama</div>
+                <div class="col-lg-10 col-md-9">{{ suket.nama }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Jenis Kelamin</div>
+                <div class="col-lg-10 col-md-9">{{ suket.jenis_kelamin }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Tempat Tanggal Lahir</div>
+                <div class="col-lg-10 col-md-9">{{ suket.ttl }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Agama</div>
+                <div class="col-lg-10 col-md-9">{{ suket.agama }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Alamat</div>
+                <div class="col-lg-10 col-md-9">{{ suket.alamat }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Pekerjaan</div>
+                <div class="col-lg-10 col-md-9">{{ suket.pekerjaan }}</div>
+              </div>
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Nama di dokumen pertama</div>
+                <div class="col-lg-10 col-md-9">{{ suket.namadokumen1 }}</div>
+              </div>
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Jenis dokumen pertama</div>
+                <div class="col-lg-10 col-md-9">{{ suket.dokumen1 }}</div>
+              </div>
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Nama di dokumen kedua</div>
+                <div class="col-lg-10 col-md-9">{{ suket.namadokumen2 }}</div>
+              </div>
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Jenis dokumen kedua</div>
+                <div class="col-lg-10 col-md-9">{{ suket.dokumen2 }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Berkas 1</div>
+                <div class="col-lg-10 col-md-9">
+                  <a href="{{ suket.berkas1 }}">
+                    {{ suket.berkas1|filename }}</a
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Berkas 2</div>
+                <div class="col-lg-10 col-md-9">
+                  <a href="{{ suket.berkas2 }}">
+                    {{ suket.berkas2|filename }}</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Bordered Tabs -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock konten %}

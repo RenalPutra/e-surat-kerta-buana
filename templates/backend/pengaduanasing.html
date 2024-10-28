@@ -1,0 +1,73 @@
+{% extends "backend/base_ui.html" %} {% load static %} {% load custom_filters %}
+{% block konten %}
+
+<div class="pagetitle">
+  <h1>Data Pengaduan Asing</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{url 'dashboard'}">Home</a></li>
+      <li class="breadcrumb-item">Aduan Asing</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+
+<section class="section">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <!-- Table with stripped rows -->
+          <div class="table-responsive">
+            <table class="table datatable">
+              <thead>
+                <tr>
+                  <th>Nama</th>
+                  <th>Email</th>
+                  <th>Telepon</th>
+                  <th>KTP</th>
+                  <th class="text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for aduan in aduans %}
+                <tr>
+                  <td><a href="{% url 'detail_pengaduan_asing' aduan.id %}">{{ aduan.name }}</a></td>
+                  <td>{{ aduan.email }}</td>
+
+                  <td>{{ aduan.phone }}</td>
+                  <td>
+                    <a href="{{ aduan.ktp }}">{{ aduan.ktp|filename }}</a>
+                  </td>
+                  <td class="text-center">
+                    <!-- Btn-group untuk aksi -->
+                    <div
+                      class="btn-group gap-3"
+                      role="group"
+                      aria-label="Action buttons"
+                    >
+                      <a
+                        href="{% url 'delete_pengaduan_asing' aduan.id %}"
+                        class="text-decoration-none"
+                      >
+                        <button
+                          type="button"
+                          class="btn btn-danger btn-sm rounded-3"
+                        >
+                          Delete
+                        </button>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <!-- End Table with stripped rows -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock konten %}

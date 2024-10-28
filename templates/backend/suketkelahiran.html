@@ -1,0 +1,1053 @@
+{% extends "backend/base_ui.html" %} {% load static %} {% load custom_filters %}
+{% block konten %}
+
+<div>
+  <div class="pagetitle">
+    <h1>Surat Keterangan Kelahiran</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'dashboard' %}">Home</a>
+        </li>
+        <li class="breadcrumb-item active">Surat Keterangan Kelahiran</li>
+      </ol>
+    </nav>
+  </div>
+  {% if value %}
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Surat Keterangan Kelahiran</h5>
+
+      <!-- General Form Elements -->
+
+      <form
+        method="post"
+        action="{% url 'edit_suketkelahiran' value.id %}"
+        enctype="multipart/form-data"
+      >
+        {% csrf_token %}
+        <p class="text-secondary">Anak</p>
+        <div class="row mb-3">
+          <label for="inputNamaB" class="col-sm-2 col-form-label">Nama</label>
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputNamaB"
+              value="{{ value.namab }}"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label class="col-sm-2 col-form-label">Jenis Kelamin</label>
+          <div class="col-sm-10">
+            <select class="form-select" name="inputJenisKelaminB">
+              <option selected>Pilih jenis kelamin</option>
+              {% if value.jenis_kelamin == "Laki-laki" %}
+
+              <option value="Laki-laki" selected>Laki-laki</option>
+              <option value="Perempuan">Perempuan</option>
+              {% else %}
+              <option value="Laki-laki">Laki-laki</option>
+              <option value="Perempuan" selected>Perempuan</option>
+              {% endif %}
+            </select>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputDate" class="col-sm-2 col-form-label"
+            >Tanggal lahir</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="date"
+              class="form-control"
+              name="inputTanggalLahirB"
+              value="{{ value.tanggal_lahirb }}"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputTempatLahirB" class="col-sm-2 col-form-label"
+            >Tempat lahir</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputTempatLahirB"
+              value="{{ value.tempat_lahirb }}"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label for="inputAgamaB" class="col-sm-2 col-form-label">Agama</label>
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputAgamaB"
+              value="{{ value.agamab }}"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label for="inputAlamatB" class="col-sm-2 col-form-label"
+            >Alamat</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputAlamatB"
+              value="{{ value.alamatb }}"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputAnakKe" class="col-sm-2 col-form-label"
+            >Anak Ke</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputAnakKe"
+              value="{{ value.anakke }}"
+              required
+            />
+          </div>
+        </div>
+
+        <p class="text-secondary">Orang Tua</p>
+        <div class="row mb-3">
+          <label for="inputNamaA" class="col-sm-2 col-form-label"
+            >Nama Ayah</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputNamaA"
+              value="{{ value.namaa }}"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label for="inputUmurA" class="col-sm-2 col-form-label">Umur</label>
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputUmurA"
+              value="{{ value.umura }}"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputPekerjaanA" class="col-sm-2 col-form-label"
+            >Pekerjaan</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputPekerjaanA"
+              value="{{ value.pekerjaana }}"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputAlamatA" class="col-sm-2 col-form-label"
+            >Alamat</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputAlamatA"
+              value="{{ value.alamata }}"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputNamaI" class="col-sm-2 col-form-label"
+            >Nama Ibu</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputNamaI"
+              value="{{ value.namai }}"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label for="inputUmurI" class="col-sm-2 col-form-label">Umur</label>
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputUmurI"
+              value="{{ value.umuri }}"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputPekerjaanI" class="col-sm-2 col-form-label"
+            >Pekerjaan</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputPekerjaanI"
+              value="{{ value.pekerjaani }}"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputAlamatI" class="col-sm-2 col-form-label"
+            >Alamat</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputAlamatI"
+              value="{{ value.alamati }}"
+              required
+            />
+          </div>
+        </div>
+
+        <p class="text-secondary">Berkas Bayi</p>
+        <div class="row mb-3">
+          <label for="inputNumber" class="col-sm-2 col-form-label"
+            >FC Kartu Keluarga</label
+          >
+          <div class="col-sm-10">
+            <input class="form-control" type="file" id="formFile" name="kkb" />
+            <div class="d-flex gap-3">
+              <p>file yang di upload :</p>
+              <a href="{{ value.kkb }}">{{ value.kkb|filename }}</a>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputNumber" class="col-sm-2 col-form-label"
+            >FC Buku Nikah</label
+          >
+          <div class="col-sm-10">
+            <input
+              class="form-control"
+              type="file"
+              id="formFile"
+              name="scanfcbnb"
+            />
+            <div class="d-flex gap-3">
+              <p>file yang di upload :</p>
+              <a href="{{ value.scanfcbnb }}">{{ value.scanfcbnb|filename }}</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label for="inputNumber" class="col-sm-2 col-form-label"
+            >FC KTP Orang Tua</label
+          >
+          <div class="col-sm-10">
+            <input
+              class="form-control"
+              type="file"
+              id="formFile"
+              name="scanfcktportub"
+            />
+            <div class="d-flex gap-3">
+              <p>file yang di upload :</p>
+              <a href="{{ value.scanfcktportub }}"
+                >{{ value.scanfcktportub|filename }}</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputNumber" class="col-sm-2 col-form-label"
+            >FC KTP Saksi 1</label
+          >
+          <div class="col-sm-10">
+            <input
+              class="form-control"
+              type="file"
+              id="formFile"
+              name="scanfcktpsaksib1"
+            />
+            <div class="d-flex gap-3">
+              <p>file yang di upload :</p>
+              <a href="{{ value.scanfcktpsaksib1 }}"
+                >{{ value.scanfcktpsaksib1|filename }}</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputNumber" class="col-sm-2 col-form-label"
+            >FC KTP Saksi 2</label
+          >
+          <div class="col-sm-10">
+            <input
+              class="form-control"
+              type="file"
+              id="formFile"
+              name="scanfcktpsaksib2"
+            />
+            <div class="d-flex gap-3">
+              <p>file yang di upload :</p>
+              <a href="{{ value.scanfcktpsaksib2 }}"
+                >{{ value.scanfcktpsaksib2|filename }}</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <p class="text-secondary">Berkas Dewasa</p>
+
+        <div class="row mb-3">
+          <label for="inputNumber" class="col-sm-2 col-form-label"
+            >FC Kartu Keluarga</label
+          >
+          <div class="col-sm-10">
+            <input class="form-control" type="file" id="formFile" name="kkd" />
+            <div class="d-flex gap-3">
+              <p>file yang di upload :</p>
+              <a href="{{ value.kkd }}">{{ value.kkd|filename }}</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label for="inputNumber" class="col-sm-2 col-form-label"
+            >FC KTP Orang Tua/KK</label
+          >
+          <div class="col-sm-10">
+            <input
+              class="form-control"
+              type="file"
+              id="formFile"
+              name="kk_ktportud"
+            />
+            <div class="d-flex gap-3">
+              <p>file yang di upload :</p>
+              <a href="{{ value.kk_ktportud }}"
+                >{{ value.kk_ktportud|filename }}</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputNumber" class="col-sm-2 col-form-label"
+            >FC KTP Saksi 1</label
+          >
+          <div class="col-sm-10">
+            <input
+              class="form-control"
+              type="file"
+              id="formFile"
+              name="scanfcktpsaksid1"
+            />
+            <div class="d-flex gap-3">
+              <p>file yang di upload :</p>
+              <a href="{{ value.scanfcktpsaksid1 }}"
+                >{{ value.scanfcktpsaksid1|filename }}</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputNumber" class="col-sm-2 col-form-label"
+            >FC KTP Saksi 2</label
+          >
+          <div class="col-sm-10">
+            <input
+              class="form-control"
+              type="file"
+              id="formFile"
+              name="scanfcktpsaksid2"
+            />
+            <div class="d-flex gap-3">
+              <p>file yang di upload :</p>
+              <a href="{{ value.scanfcktpsaksid2 }}"
+                >{{ value.scanfcktpsaksid2|filename }}</a
+              >
+            </div>
+          </div>
+        </div>
+        <p class="text-secondary">Melengkapi</p>
+        <div class="row mb-3">
+          <label for="inputPersyaratan" class="col-sm-2 col-form-label"
+            >Peryaratan Melengkapi</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputPersyaratan"
+              value="{{ value.persyaratan }}"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="col-sm-2 col-form-label">Submit Here</label>
+          <div class="col-sm-10">
+            <a href="{% url 'suketkelahiran' %}">
+              <button class="btn btn-secondary">Cancel</button>
+            </a>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- End General Form Elements -->
+    </div>
+  </div>
+  {% else %}
+  <div class="container-fluid">
+    <div class="d-flex justify-content-end mb-3">
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#formModal"
+      >
+        Tambahkan surat
+      </button>
+    </div>
+    <div class="table-responsive">
+      <table class="table datatable">
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th data-type="date" data-format="YYYY/DD/MM">Date</th>
+            <th>Status</th>
+            <th class="text-center">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if user.is_superuser %} {% for surat in suket %}
+
+          <tr>
+            <td>
+              <a href="{% url 'detail_suketkelahiran' surat.id %}"
+                >{{ surat.namab }}</a
+              >
+            </td>
+            <td>{{ surat.date }}</td>
+            {% if surat.status == 'review' %}
+            <td class="text-warning fw-bold">Proses Review</td>
+            {% elif surat.status == 'approved' %}
+            <td class="text-success fw-bold">Disetujui</td>
+            {% elif surat.status == 'rejected' %}
+            <td class="text-danger fw-bold">Ditolak</td>
+            {% endif %} {% if user.is_superuser %}
+
+            <td class="text-center">
+              <!-- Btn-group untuk aksi -->
+              <div
+                class="btn-group gap-3"
+                role="group"
+                aria-label="Action buttons"
+              >
+                <button type="button" class="btn btn-success btn-sm rounded-3">
+                  <a
+                    href="{% url 'setujui_suketkelahiran' surat.id %}"
+                    class="text-decoration-none text-white"
+                    >Setujui</a
+                  >
+                </button>
+                <button type="button" class="btn btn-danger btn-sm rounded-3">
+                  <a
+                    href="{% url 'tolak_suketkelahiran' surat.id %}"
+                    class="text-decoration-none text-white"
+                    >Tolak</a
+                  >
+                </button>
+              </div>
+            </td>
+
+            {% else %}
+
+            <td class="text-center">
+              <!-- Btn-group untuk aksi -->
+              <div
+                class="btn-group gap-3"
+                role="group"
+                aria-label="Action buttons"
+              >
+                <a
+                  href="{% url 'edit_suketkelahiran' surat.id %}"
+                  class="text-decoration-none"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-warning btn-sm rounded-3"
+                  >
+                    Edit
+                  </button>
+                </a>
+                <a
+                  href="{% url 'delete_suketkelahiran' surat.id %}"
+                  class="text-decoration-none"
+                >
+                  <button type="button" class="btn btn-danger btn-sm rounded-3">
+                    Delete
+                  </button>
+                </a>
+
+                {% if surat.status == 'approved' %}
+
+                <a
+                  href="{% url 'print_suketkelahiran' surat.id %}"
+                  class="text-decoration-none"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm rounded-3"
+                  >
+                    Print
+                  </button>
+                </a>
+
+                {% else %}
+
+                <button
+                  type="button"
+                  class="btn btn-primary btn-sm rounded-3"
+                  disabled
+                >
+                  <a
+                    href="{% url 'print_suketkelahiran' surat.id %}"
+                    class="text-decoration-none text-white"
+                    >Print
+                  </a>
+                </button>
+
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+          </tr>
+          {% endfor %} {% else %} {% for surat in private %}
+
+          <tr>
+            <td>
+              <a href="{% url 'detail_suketkelahiran' surat.id %}"
+                >{{ surat.namab }}</a
+              >
+            </td>
+            <td>{{ surat.date }}</td>
+            {% if surat.status == 'review' %}
+            <td class="text-warning fw-bold">Proses Review</td>
+            {% elif surat.status == 'approved' %}
+            <td class="text-success fw-bold">Disetujui</td>
+            {% elif surat.status == 'rejected' %}
+            <td class="text-danger fw-bold">Ditolak</td>
+            {% endif %} {% if user.is_superuser %}
+
+            <td class="text-center">
+              <!-- Btn-group untuk aksi -->
+              <div
+                class="btn-group gap-3"
+                role="group"
+                aria-label="Action buttons"
+              >
+                <button type="button" class="btn btn-success btn-sm rounded-3">
+                  <a
+                    href="{% url 'setujui_suketkelahiran' surat.id %}"
+                    class="text-decoration-none text-white"
+                    >Setujui</a
+                  >
+                </button>
+                <button type="button" class="btn btn-danger btn-sm rounded-3">
+                  <a
+                    href="{% url 'tolak_suketkelahiran' surat.id %}"
+                    class="text-decoration-none text-white"
+                    >Tolak</a
+                  >
+                </button>
+              </div>
+            </td>
+
+            {% else %}
+
+            <td class="text-center">
+              <!-- Btn-group untuk aksi -->
+              <div
+                class="btn-group gap-3"
+                role="group"
+                aria-label="Action buttons"
+              >
+                <a
+                  href="{% url 'edit_suketkelahiran' surat.id %}"
+                  class="text-decoration-none"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-warning btn-sm rounded-3"
+                  >
+                    Edit
+                  </button>
+                </a>
+                <a
+                  href="{% url 'delete_suketkelahiran' surat.id %}"
+                  class="text-decoration-none"
+                >
+                  <button type="button" class="btn btn-danger btn-sm rounded-3">
+                    Delete
+                  </button>
+                </a>
+
+                {% if surat.status == 'approved' %}
+
+                <a
+                  href="{% url 'print_suketkelahiran' surat.id %}"
+                  class="text-decoration-none"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm rounded-3"
+                  >
+                    Print
+                  </button>
+                </a>
+
+                {% else %}
+
+                <button
+                  type="button"
+                  class="btn btn-primary btn-sm rounded-3"
+                  disabled
+                >
+                  <a
+                    href="{% url 'print_suketkelahiran' surat.id %}"
+                    class="text-decoration-none text-white"
+                    >Print
+                  </a>
+                </button>
+
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+          </tr>
+          {% endfor %} {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endif %}
+
+  <div
+    class="modal fade"
+    id="formModal"
+    tabindex="-1"
+    aria-labelledby="formModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="formModalLabel">Tambahkan Surat</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Surat Keterangan Kelahiran</h5>
+
+              <!-- General Form Elements -->
+
+              <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <p class="text-secondary">Anak</p>
+                <div class="row mb-3">
+                  <label for="inputNamaB" class="col-sm-2 col-form-label"
+                    >Nama</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputNamaB"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" name="inputJenisKelaminB">
+                      <option selected>Pilih jenis kelamin</option>
+                      <option value="Laki-laki">Laki-laki</option>
+                      <option value="Perempuan">Perempuan</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputDate" class="col-sm-2 col-form-label"
+                    >Tanggal lahir</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="date"
+                      class="form-control"
+                      name="inputTanggalLahirB"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputTempatLahirB" class="col-sm-2 col-form-label"
+                    >Tempat lahir</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputTempatLahirB"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="inputAgamaB" class="col-sm-2 col-form-label"
+                    >Agama</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputAgamaB"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="inputAlamatB" class="col-sm-2 col-form-label"
+                    >Alamat</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputAlamatB"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputAnakKe" class="col-sm-2 col-form-label"
+                    >Anak Ke</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputAnakKe"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <p class="text-secondary">Orang Tua</p>
+                <div class="row mb-3">
+                  <label for="inputNamaA" class="col-sm-2 col-form-label"
+                    >Nama Ayah</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputNamaA"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="inputUmurA" class="col-sm-2 col-form-label"
+                    >Umur</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputUmurA"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputPekerjaanA" class="col-sm-2 col-form-label"
+                    >Pekerjaan</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputPekerjaanA"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputAlamatA" class="col-sm-2 col-form-label"
+                    >Alamat</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputAlamatA"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputNamaI" class="col-sm-2 col-form-label"
+                    >Nama Ibu</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputNamaI"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="inputUmurI" class="col-sm-2 col-form-label"
+                    >Umur</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputUmurI"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputPekerjaanI" class="col-sm-2 col-form-label"
+                    >Pekerjaan</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputPekerjaanI"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputAlamatI" class="col-sm-2 col-form-label"
+                    >Alamat</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputAlamatI"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <p class="text-secondary">Berkas Bayi</p>
+                <div class="row mb-3">
+                  <label for="inputNumber" class="col-sm-2 col-form-label"
+                    >FC Kartu Keluarga</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      class="form-control"
+                      type="file"
+                      id="formFile"
+                      name="kkb"
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputNumber" class="col-sm-2 col-form-label"
+                    >FC Buku Nikah</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      class="form-control"
+                      type="file"
+                      id="formFile"
+                      name="scanfcbnb"
+                    />
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="inputNumber" class="col-sm-2 col-form-label"
+                    >FC KTP Orang Tua</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      class="form-control"
+                      type="file"
+                      id="formFile"
+                      name="scanfcktportub"
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputNumber" class="col-sm-2 col-form-label"
+                    >FC KTP Saksi 1</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      class="form-control"
+                      type="file"
+                      id="formFile"
+                      name="scanfcktpsaksib1"
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputNumber" class="col-sm-2 col-form-label"
+                    >FC KTP Saksi 2</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      class="form-control"
+                      type="file"
+                      id="formFile"
+                      name="scanfcktpsaksib2"
+                    />
+                  </div>
+                </div>
+
+                <p class="text-secondary">Berkas Dewasa</p>
+
+                <div class="row mb-3">
+                  <label for="inputNumber" class="col-sm-2 col-form-label"
+                    >FC Kartu Keluarga</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      class="form-control"
+                      type="file"
+                      id="formFile"
+                      name="kkd"
+                    />
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="inputNumber" class="col-sm-2 col-form-label"
+                    >FC KTP Orang Tua/KK</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      class="form-control"
+                      type="file"
+                      id="formFile"
+                      name="kk_ktportud"
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputNumber" class="col-sm-2 col-form-label"
+                    >FC KTP Saksi 1</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      class="form-control"
+                      type="file"
+                      id="formFile"
+                      name="scanfcktpsaksid1"
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputNumber" class="col-sm-2 col-form-label"
+                    >FC KTP Saksi 2</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      class="form-control"
+                      type="file"
+                      id="formFile"
+                      name="scanfcktpsaksid2"
+                    />
+                  </div>
+                </div>
+
+                <p class="text-secondary">Melengkapi</p>
+                <div class="row mb-3">
+                  <label for="inputPersyaratan" class="col-sm-2 col-form-label"
+                    >Peryaratan Melengkapi</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputPersyaratan"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Submit Here</label>
+                  <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </form>
+
+              <!-- End General Form Elements -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock konten %}

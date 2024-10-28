@@ -1,0 +1,200 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{% static 'backend/css/suketahliwaris.css' %}"
+    />
+    <title>Surat Keterangan Ahli Waris</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1 style="text-decoration: underline">SURAT KETERANGAN AHLI WARIS</h1>
+        <p>
+          Nomor: &emsp;&emsp;&emsp; / 64.02.16.2005 / SK /&emsp;&emsp;&emsp; /
+          {{date|date:"Y"}}
+        </p>
+      </div>
+
+      <div class="content">
+        <p style="text-indent: 30px">
+          Kami yang bertanda tangan di bawah ini adalah ahli waris dari Almarhum
+          <span>{{almahrum}}</span> yang telah meninggal pada Tanggal
+          <span>{{tanggalmeninggal}}</span> Bulan <span>{{bulanmeninggal}}</span> Tahun
+          <span>{{tahunmeninggal}}</span>, surat kematian Nomor:
+          <span>&emsp;&emsp;&emsp;</span> Tanggal <span>{{date|date:"d F Y"}}</span>.
+        </p>
+        <p style="text-indent: 30px">
+          Dengan ini menerangkan bahwa dari perkawinan
+          <span>{{suami}}</span> dengan
+          <span>{{istri}}</span> telah melahirkan
+          <span>{{jumlahanak}}</span> orang anak yang sekarang masih hidup:
+        </p>
+
+        <div class="details">
+          <table>
+            <tr>
+              <td>1.</td>
+              <td>Nama</td>
+              <td>:</td>
+              <td>{{ nama1 }}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Tempat tanggal lahir</td>
+              <td>:</td>
+              <td>{{ ttl1 }}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Alamat</td>
+              <td>:</td>
+              <td>{{ alamat1 }}</td>
+            </tr>
+            <tr>
+              <td>2.</td>
+              <td>Nama</td>
+              <td>:</td>
+              <td>{{nama2}}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Tempat tanggal lahir</td>
+              <td>:</td>
+              <td>{{ttl2}}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Alamat</td>
+              <td>:</td>
+              <td>{{alamat2}}</td>
+            </tr>
+            <tr>
+              <td>3.</td>
+              <td>Nama</td>
+              <td>:</td>
+              <td>{{ nama3 }}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Tempat tanggal lahir</td>
+              <td>:</td>
+              <td>{{ ttl3 }}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Alamat</td>
+              <td>:</td>
+              <td>{{ alamat3 }}</td>
+            </tr>
+            <tr>
+              <td>4.</td>
+              <td>Nama</td>
+              <td>:</td>
+              <td>{{nama4}}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Tempat tanggal lahir</td>
+              <td>:</td>
+              <td>{{ttl4}}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Alamat</td>
+              <td>:</td>
+              <td>{{alamat4}}</td>
+            </tr>
+            <!-- Repeat for more children -->
+          </table>
+        </div>
+
+        <p style="text-indent: 30px">
+          Dengan ini menerangkan bahwa selain Ahli Waris tersebut di atas tidak
+          ada ahli waris lainnya.
+        </p>
+        <p style="text-indent: 30px">
+          Demikian Surat Keterangan/Pernyataan Ahli Waris ini dibuat dalam
+          keadaan yang benar dan untuk dipergunakan sebagaimana mestinya.
+        </p>
+      </div>
+
+      <p style="text-align: right">
+        Dibuat pada tanggal, {{date|date:"d F Y"}}
+      </p>
+      <div
+        class="signature-section"
+        style="
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          margin-top: 50px;
+        "
+      >
+        <div style="flex: 1; text-align: center">
+          <p>Disaksikan Oleh :</p>
+          <div style="display: flex; justify-content: space-around">
+            <div>
+              <p>1. ____________</p>
+              <p>2. ____________</p>
+              <div>
+                <p style="text-align: left">3. Ketua RT</p>
+                <p>(____________)</p>
+              </div>
+            </div>
+            <div>
+              <p>1. ____________</p>
+              <p>2. ____________</p>
+              <p>3. ____________</p>
+            </div>
+          </div>
+        </div>
+        <div style="flex: 1; text-align: center">
+          <p>Yang menyatakan para ahli waris</p>
+          <div style="display: flex; justify-content: space-around">
+            <div>
+              <p>1. ____________</p>
+              <p>2. ____________</p>
+              <p>3. ____________</p>
+            </div>
+            <div>
+              <p>1. ____________</p>
+              <p>2. ____________</p>
+              <p>3. ____________</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer" style="display: flex">
+        <div style="flex: 1; text-align: center">
+          <p>Mengetahui:</p>
+          <p>Camat Tenggarong Seberang</p>
+          <br /><br /><br /><br />
+          <div style="line-height: 0.1; font-weight: bold">
+            <p style="text-decoration: underline">TEGO YUWONO S.Sos.M.Si</p>
+            <p>Pembina TK I / IV.b</p>
+            <p>Nip. 19681024 199003 1 004</p>
+          </div>
+        </div>
+        <div style="flex: 1; text-align: center">
+          <br /><br />
+          <p>Kepala Desa Kerta Buana</p>
+          <!--Copy from her for barcode-->
+          <img
+            style="width: 120px; margin-right: 20px"
+            src="{% static 'backend/img/barcode.png' %}"
+            alt="bar"
+          />
+          <p style="position: relative; left: 5px">I Dewa Ketut Adi Basuki</p>
+
+          <!--Until here-->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

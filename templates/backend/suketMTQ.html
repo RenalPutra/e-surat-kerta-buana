@@ -1,0 +1,590 @@
+{% extends "backend/base_ui.html" %} {% load static %} {% load custom_filters %}
+{% block konten %}
+
+<div>
+  <div class="pagetitle">
+    <h1>Surat Keterangan MTQ</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'dashboard' %}">Home</a>
+        </li>
+        <li class="breadcrumb-item active">Surat Keterangan MTQ</li>
+      </ol>
+    </nav>
+  </div>
+  {% if value %}
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Surat Keterangan MTQ</h5>
+
+      <!-- General Form Elements -->
+
+      <form method="post" action="{% url 'edit_suketMTQ' value.id %}">
+        {% csrf_token %}
+        <div class="row mb-3">
+          <label for="inputNama" class="col-sm-2 col-form-label">Nama</label>
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputNama"
+              value="{{ value.nama }}"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label class="col-sm-2 col-form-label">Jenis Kelamin</label>
+          <div class="col-sm-10">
+            <select class="form-select" name="inputjk">
+              <option selected>Pilih jenis kelamin</option>
+              {% if value.jenis_kelamin == "Laki-laki" %}
+
+              <option value="Laki-laki" selected>Laki-laki</option>
+              <option value="Perempuan">Perempuan</option>
+              {% else %}
+              <option value="Laki-laki">Laki-laki</option>
+              <option value="Perempuan" selected>Perempuan</option>
+              {% endif %}
+            </select>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputTtl" class="col-sm-2 col-form-label"
+            >Tempat tanggal lahir</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputTtl"
+              value="{{ value.ttl }}"
+              placeholder="contoh: Samarinda, 01 Januari 2020"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputSuku" class="col-sm-2 col-form-label"
+            >Suku/Bangsa</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputSuku"
+              value="{{ value.suku }}"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputAgama" class="col-sm-2 col-form-label">Agama</label>
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputAgama"
+              value="{{ value.agama }}"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label for="inputPekerjaan" class="col-sm-2 col-form-label"
+            >Pekerjaan</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputPekerjaan"
+              value="{{ value.pekerjaan }}"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputAlamat" class="col-sm-2 col-form-label"
+            >Alamat</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputAlamat"
+              value="{{ value.alamat }}"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputDusun" class="col-sm-2 col-form-label">Dusun</label>
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputDusun"
+              value="{{ value.dusun }}"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputTahunMenetap" class="col-sm-2 col-form-label"
+            >Tahun Menetap</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputTahunMenetap"
+              value="{{ value.tahunmenetap }}"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputKeperluan" class="col-sm-2 col-form-label"
+            >Keperluan</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputKeperluan"
+              value="{{ value.keperluan }}"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="col-sm-2 col-form-label">Submit Here</label>
+          <div class="col-sm-10">
+            <a href="{% url 'suketMTQ' %}">
+              <button class="btn btn-secondary">Cancel</button>
+            </a>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- End General Form Elements -->
+    </div>
+  </div>
+  {% else %}
+  <div class="container-fluid">
+    <div class="d-flex justify-content-end mb-3">
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#formModal"
+      >
+        Tambahkan surat
+      </button>
+    </div>
+    <div class="table-responsive">
+      <table class="table datatable">
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th data-type="date" data-format="YYYY/DD/MM">Date</th>
+            <th>Status</th>
+            <th class="text-center">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if user.is_superuser %} {% for surat in suket %}
+
+          <tr>
+            <td>
+              <a href="{% url 'detail_suketmtq' surat.id %}"
+                >{{ surat.nama }}</a
+              >
+            </td>
+            <td>{{ surat.date }}</td>
+            {% if surat.status == 'review' %}
+            <td class="text-warning fw-bold">Proses Review</td>
+            {% elif surat.status == 'approved' %}
+            <td class="text-success fw-bold">Disetujui</td>
+            {% elif surat.status == 'rejected' %}
+            <td class="text-danger fw-bold">Ditolak</td>
+            {% endif %} {% if user.is_superuser %}
+
+            <td class="text-center">
+              <!-- Btn-group untuk aksi -->
+              <div
+                class="btn-group gap-3"
+                role="group"
+                aria-label="Action buttons"
+              >
+                <button type="button" class="btn btn-success btn-sm rounded-3">
+                  <a
+                    href="{% url 'setujui_suketmtq' surat.id %}"
+                    class="text-decoration-none text-white"
+                    >Setujui</a
+                  >
+                </button>
+                <button type="button" class="btn btn-danger btn-sm rounded-3">
+                  <a
+                    href="{% url 'tolak_suketmtq' surat.id %}"
+                    class="text-decoration-none text-white"
+                    >Tolak</a
+                  >
+                </button>
+              </div>
+            </td>
+
+            {% else %}
+            <td class="text-center">
+              <!-- Btn-group untuk aksi -->
+              <div
+                class="btn-group gap-3"
+                role="group"
+                aria-label="Action buttons"
+              >
+                <a
+                  href="{% url 'edit_suketMTQ' surat.id %}"
+                  class="text-decoration-none"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-warning btn-sm rounded-3"
+                  >
+                    Edit
+                  </button>
+                </a>
+                <a
+                  href="{% url 'delete_suketMTQ' surat.id %}"
+                  class="text-decoration-none"
+                >
+                  <button type="button" class="btn btn-danger btn-sm rounded-3">
+                    Delete
+                  </button>
+                </a>
+
+                {% if surat.status == 'approved' %}
+
+                <a
+                  href="{% url 'print_suketMTQ' surat.id %}"
+                  class="text-decoration-none"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm rounded-3"
+                  >
+                    Print
+                  </button>
+                </a>
+
+                {% else %}
+
+                <button
+                  type="button"
+                  class="btn btn-primary btn-sm rounded-3"
+                  disabled
+                >
+                  <a
+                    href="{% url 'print_suketMTQ' surat.id %}"
+                    class="text-decoration-none text-white"
+                  >
+                    Print</a
+                  >
+                </button>
+
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+          </tr>
+          {% endfor %} {% else %} {% for surat in private %}
+
+          <tr>
+            <td>
+              <a href="{% url 'detail_suketmtq' surat.id %}"
+                >{{ surat.nama }}</a
+              >
+            </td>
+            <td>{{ surat.date }}</td>
+            {% if surat.status == 'review' %}
+            <td class="text-warning fw-bold">Proses Review</td>
+            {% elif surat.status == 'approved' %}
+            <td class="text-success fw-bold">Disetujui</td>
+            {% elif surat.status == 'rejected' %}
+            <td class="text-danger fw-bold">Ditolak</td>
+            {% endif %} {% if user.is_superuser %}
+
+            <td class="text-center">
+              <!-- Btn-group untuk aksi -->
+              <div
+                class="btn-group gap-3"
+                role="group"
+                aria-label="Action buttons"
+              >
+                <button type="button" class="btn btn-success btn-sm rounded-3">
+                  <a
+                    href="{% url 'setujui_suketmtq' surat.id %}"
+                    class="text-decoration-none text-white"
+                    >Setujui</a
+                  >
+                </button>
+                <button type="button" class="btn btn-danger btn-sm rounded-3">
+                  <a
+                    href="{% url 'tolak_suketmtq' surat.id %}"
+                    class="text-decoration-none text-white"
+                    >Tolak</a
+                  >
+                </button>
+              </div>
+            </td>
+
+            {% else %}
+            <td class="text-center">
+              <!-- Btn-group untuk aksi -->
+              <div
+                class="btn-group gap-3"
+                role="group"
+                aria-label="Action buttons"
+              >
+                <a
+                  href="{% url 'edit_suketMTQ' surat.id %}"
+                  class="text-decoration-none"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-warning btn-sm rounded-3"
+                  >
+                    Edit
+                  </button>
+                </a>
+                <a
+                  href="{% url 'delete_suketMTQ' surat.id %}"
+                  class="text-decoration-none"
+                >
+                  <button type="button" class="btn btn-danger btn-sm rounded-3">
+                    Delete
+                  </button>
+                </a>
+
+                {% if surat.status == 'approved' %}
+
+                <a
+                  href="{% url 'print_suketMTQ' surat.id %}"
+                  class="text-decoration-none"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm rounded-3"
+                  >
+                    Print
+                  </button>
+                </a>
+
+                {% else %}
+
+                <button
+                  type="button"
+                  class="btn btn-primary btn-sm rounded-3"
+                  disabled
+                >
+                  <a
+                    href="{% url 'print_suketMTQ' surat.id %}"
+                    class="text-decoration-none text-white"
+                  >
+                    Print</a
+                  >
+                </button>
+
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+          </tr>
+          {% endfor %} {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endif %}
+
+  <div
+    class="modal fade"
+    id="formModal"
+    tabindex="-1"
+    aria-labelledby="formModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="formModalLabel">Tambahkan Surat</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Surat Keterangan MTQ</h5>
+
+              <!-- General Form Elements -->
+
+              <form method="post">
+                {% csrf_token %}
+                <div class="row mb-3">
+                  <label for="inputNama" class="col-sm-2 col-form-label"
+                    >Nama</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputNama"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" name="inputjk">
+                      <option selected>Pilih jenis kelamin</option>
+                      <option value="Laki-laki">Laki-laki</option>
+                      <option value="Perempuan">Perempuan</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputTtl" class="col-sm-2 col-form-label"
+                    >Tempat tanggal lahir</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputTtl"
+                      placeholder="contoh: Samarinda, 01 Januari 2020"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputSuku" class="col-sm-2 col-form-label"
+                    >Suku/Bangsa</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputSuku"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputAgama" class="col-sm-2 col-form-label"
+                    >Agama</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputAgama"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="inputPekerjaan" class="col-sm-2 col-form-label"
+                    >Pekerjaan</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputPekerjaan"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputAlamat" class="col-sm-2 col-form-label"
+                    >Alamat</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputAlamat"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputDusun" class="col-sm-2 col-form-label"
+                    >Dusun</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputDusun"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputTahunMenetap" class="col-sm-2 col-form-label"
+                    >Tahun Menetap</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputTahunMenetap"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputKeperluan" class="col-sm-2 col-form-label"
+                    >Keperluan</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputKeperluan"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Submit Here</label>
+                  <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </form>
+
+              <!-- End General Form Elements -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock konten %}

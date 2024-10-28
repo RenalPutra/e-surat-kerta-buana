@@ -1,0 +1,610 @@
+{% extends "backend/base_ui.html" %} {% load static %} {% load custom_filters %}
+{% block konten %}
+
+<div>
+  <div class="pagetitle">
+    <h1>Surat Keterangan Kehilangan Barang</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'dashboard' %}">Home</a>
+        </li>
+        <li class="breadcrumb-item active">
+          Surat Keterangan Kehilangan Barang
+        </li>
+      </ol>
+    </nav>
+  </div>
+  {% if value %}
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Surat Keterangan Kehilangan Barang</h5>
+
+      <!-- General Form Elements -->
+
+      <form method="post" action="{% url 'edit_suketkehilangan' value.id %}">
+        {% csrf_token %}
+        <div class="row mb-3">
+          <label for="inputNama" class="col-sm-2 col-form-label">Nama</label>
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputNama"
+              value="{{ value.nama }}"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label class="col-sm-2 col-form-label">Jenis Kelamin</label>
+          <div class="col-sm-10">
+            <select class="form-select" name="inputjk">
+              <option selected>Pilih jenis kelamin</option>
+              {% if value.jenis_kelamin == "Laki-laki" %}
+
+              <option value="Laki-laki" selected>Laki-laki</option>
+              <option value="Perempuan">Perempuan</option>
+              {% else %}
+              <option value="Laki-laki">Laki-laki</option>
+              <option value="Perempuan" selected>Perempuan</option>
+              {% endif %}
+            </select>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputUmur" class="col-sm-2 col-form-label">umur</label>
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputUmur"
+              value="{{ value.umur }}"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputPekerjaan" class="col-sm-2 col-form-label"
+            >Pekerjaan</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputPekerjaan"
+              value="{{ value.pekerjaan }}"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputAlamat" class="col-sm-2 col-form-label"
+            >Alamat</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputAlamat"
+              value="{{ value.alamat }}"
+              required
+            />
+          </div>
+        </div>
+        <p class="text-secondary">Barang Hilang</p>
+        <div class="row mb-3">
+          <label for="inputBarang1" class="col-sm-2 col-form-label"
+            >Barang 1</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputBarang1"
+              value="{{ value.barang1 }}"
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputBarang2" class="col-sm-2 col-form-label"
+            >Barang 2</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputBarang2"
+              value="{{ value.barang2 }}"
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputBarang3" class="col-sm-2 col-form-label"
+            >Barang 3</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputBarang3"
+              value="{{ value.barang3 }}"
+            />
+          </div>
+        </div>
+        <p class="text-secondary">Perkiraan tempat tercecer dari</p>
+        <div class="row mb-3">
+          <label for="inputTempat1" class="col-sm-2 col-form-label"
+            >Tempat 1</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputTempat1"
+              value="{{ value.tempat1 }}"
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputTempat2" class="col-sm-2 col-form-label"
+            >Tempat 2</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputTempat2"
+              value="{{ value.tempat2 }}"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label for="inputTtl" class="col-sm-2 col-form-label"
+            >Hari Kehilangan</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              name="inputHariKehilangan"
+              value="{{ value.harikehilangan }}"
+              placeholder="contoh: Senin, 01 Januari 2020"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="col-sm-2 col-form-label">Submit Here</label>
+          <div class="col-sm-10">
+            <a href="{% url 'suketkehilangan' %}">
+              <button class="btn btn-secondary">Cancel</button>
+            </a>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- End General Form Elements -->
+    </div>
+  </div>
+  {% else %}
+  <div class="container-fluid">
+    <div class="d-flex justify-content-end mb-3">
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#formModal"
+      >
+        Tambahkan surat
+      </button>
+    </div>
+    <div class="table-responsive">
+      <table class="table datatable">
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th data-type="date" data-format="YYYY/DD/MM">Date</th>
+            <th>Status</th>
+            <th class="text-center">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if user.is_superuser %} {% for surat in suket %}
+
+          <tr>
+            <td>
+              <a href="{% url 'detail_suketkehilangan' surat.id %}"
+                >{{ surat.nama }}</a
+              >
+            </td>
+            <td>{{ surat.date }}</td>
+            {% if surat.status == 'review' %}
+            <td class="text-warning fw-bold">Proses Review</td>
+            {% elif surat.status == 'approved' %}
+            <td class="text-success fw-bold">Disetujui</td>
+            {% elif surat.status == 'rejected' %}
+            <td class="text-danger fw-bold">Ditolak</td>
+            {% endif %} {% if user.is_superuser %}
+
+            <td class="text-center">
+              <!-- Btn-group untuk aksi -->
+              <div
+                class="btn-group gap-3"
+                role="group"
+                aria-label="Action buttons"
+              >
+                <button type="button" class="btn btn-success btn-sm rounded-3">
+                  <a
+                    href="{% url 'setujui_suketkehilangan' surat.id %}"
+                    class="text-decoration-none text-white"
+                    >Setujui</a
+                  >
+                </button>
+                <button type="button" class="btn btn-danger btn-sm rounded-3">
+                  <a
+                    href="{% url 'tolak_suketkehilangan' surat.id %}"
+                    class="text-decoration-none text-white"
+                    >Tolak</a
+                  >
+                </button>
+              </div>
+            </td>
+
+            {% else %}
+            <td class="text-center">
+              <!-- Btn-group untuk aksi -->
+              <div
+                class="btn-group gap-3"
+                role="group"
+                aria-label="Action buttons"
+              >
+                <a
+                  href="{% url 'edit_suketkehilangan' surat.id %}"
+                  class="text-decoration-none"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-warning btn-sm rounded-3"
+                  >
+                    Edit
+                  </button>
+                </a>
+                <a
+                  href="{% url 'delete_suketkehilangan' surat.id %}"
+                  class="text-decoration-none"
+                >
+                  <button type="button" class="btn btn-danger btn-sm rounded-3">
+                    Delete
+                  </button>
+                </a>
+
+                {% if surat.status == 'approved' %}
+                <a
+                  href="{% url 'print_suketkehilangan' surat.id %}"
+                  class="text-decoration-none"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm rounded-3"
+                  >
+                    Print
+                  </button>
+                </a>
+
+                {% else %}
+
+                <button
+                  type="button"
+                  class="btn btn-primary btn-sm rounded-3"
+                  disabled
+                >
+                  <a
+                    href="{% url 'print_suketkehilangan' surat.id %}"
+                    class="text-decoration-none text-white"
+                    >Print
+                  </a>
+                </button>
+
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+          </tr>
+          {% endfor %} {% else %} {% for surat in private %}
+
+          <tr>
+            <td>
+              <a href="{% url 'detail_suketkehilangan' surat.id %}"
+                >{{ surat.nama }}</a
+              >
+            </td>
+            <td>{{ surat.date }}</td>
+            {% if surat.status == 'review' %}
+            <td class="text-warning fw-bold">Proses Review</td>
+            {% elif surat.status == 'approved' %}
+            <td class="text-success fw-bold">Disetujui</td>
+            {% elif surat.status == 'rejected' %}
+            <td class="text-danger fw-bold">Ditolak</td>
+            {% endif %} {% if user.is_superuser %}
+
+            <td class="text-center">
+              <!-- Btn-group untuk aksi -->
+              <div
+                class="btn-group gap-3"
+                role="group"
+                aria-label="Action buttons"
+              >
+                <button type="button" class="btn btn-success btn-sm rounded-3">
+                  <a
+                    href="{% url 'setujui_suketkehilangan' surat.id %}"
+                    class="text-decoration-none text-white"
+                    >Setujui</a
+                  >
+                </button>
+                <button type="button" class="btn btn-danger btn-sm rounded-3">
+                  <a
+                    href="{% url 'tolak_suketkehilangan' surat.id %}"
+                    class="text-decoration-none text-white"
+                    >Tolak</a
+                  >
+                </button>
+              </div>
+            </td>
+
+            {% else %}
+            <td class="text-center">
+              <!-- Btn-group untuk aksi -->
+              <div
+                class="btn-group gap-3"
+                role="group"
+                aria-label="Action buttons"
+              >
+                <a
+                  href="{% url 'edit_suketkehilangan' surat.id %}"
+                  class="text-decoration-none"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-warning btn-sm rounded-3"
+                  >
+                    Edit
+                  </button>
+                </a>
+                <a
+                  href="{% url 'delete_suketkehilangan' surat.id %}"
+                  class="text-decoration-none"
+                >
+                  <button type="button" class="btn btn-danger btn-sm rounded-3">
+                    Delete
+                  </button>
+                </a>
+
+                {% if surat.status == 'approved' %}
+                <a
+                  href="{% url 'print_suketkehilangan' surat.id %}"
+                  class="text-decoration-none"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm rounded-3"
+                  >
+                    Print
+                  </button>
+                </a>
+
+                {% else %}
+
+                <button
+                  type="button"
+                  class="btn btn-primary btn-sm rounded-3"
+                  disabled
+                >
+                  <a
+                    href="{% url 'print_suketkehilangan' surat.id %}"
+                    class="text-decoration-none text-white"
+                    >Print
+                  </a>
+                </button>
+
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+          </tr>
+          {% endfor %} {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endif %}
+
+  <div
+    class="modal fade"
+    id="formModal"
+    tabindex="-1"
+    aria-labelledby="formModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="formModalLabel">Tambahkan Surat</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Surat Keterangan Kehilangan Barang</h5>
+
+              <!-- General Form Elements -->
+
+              <form method="post">
+                {% csrf_token %}
+                <div class="row mb-3">
+                  <label for="inputNama" class="col-sm-2 col-form-label"
+                    >Nama</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputNama"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" name="inputjk">
+                      <option selected>Pilih jenis kelamin</option>
+                      <option value="Laki-laki">Laki-laki</option>
+                      <option value="Perempuan">Perempuan</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputUmur" class="col-sm-2 col-form-label"
+                    >Umur</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputUmur"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputPekerjaan" class="col-sm-2 col-form-label"
+                    >Pekerjaan</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputPekerjaan"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputAlamat" class="col-sm-2 col-form-label"
+                    >Alamat</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputAlamat"
+                      required
+                    />
+                  </div>
+                </div>
+                <p class="text-secondary">Barang Hilang</p>
+                <div class="row mb-3">
+                  <label for="inputBarang1" class="col-sm-2 col-form-label"
+                    >Barang 1</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputBarang1"
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputBarang2" class="col-sm-2 col-form-label"
+                    >Barang 2</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputBarang2"
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputBarang3" class="col-sm-2 col-form-label"
+                    >Barang 3</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputBarang3"
+                    />
+                  </div>
+                </div>
+                <p class="text-secondary">Perkiraan tempat tercecer dari</p>
+                <div class="row mb-3">
+                  <label for="inputTempat1" class="col-sm-2 col-form-label"
+                    >Tempat 1</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputTempat1"
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputTempat2" class="col-sm-2 col-form-label"
+                    >Tempat 2</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputTempat2"
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputTtl" class="col-sm-2 col-form-label"
+                    >Hari Kehilangan</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="inputHariKehilangan"
+                      placeholder="contoh: Senin, 01 Januari 2020"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Submit Here</label>
+                  <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </form>
+
+              <!-- End General Form Elements -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock konten %}

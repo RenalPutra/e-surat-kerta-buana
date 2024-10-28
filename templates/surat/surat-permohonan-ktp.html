@@ -1,0 +1,305 @@
+{% load static %}
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulir Permohonan KTP</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+      }
+
+      /* Atur halaman agar sesuai dengan kertas A4 */
+      @page {
+        size: A4;
+        margin: 20mm;
+      }
+
+      .container {
+        width: 100%;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .title {
+        text-align: center;
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 20px;
+      }
+
+      .selection {
+        text-align: center;
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 15px;
+      }
+
+      .title::after {
+        content: "";
+        display: block;
+        width: 100%;
+        border-bottom: 3px solid black;
+        margin-top: 3px;
+      }
+
+      /* Hilangkan border pada tabel utama */
+      .tableSatu {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        border: none;
+      }
+
+      .no-border {
+        border: none;
+      }
+
+      .with-border {
+        border: 1px solid black;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        font-weight: bold;
+        border: none;
+      }
+
+      /* Hanya inner table yang memiliki border */
+      .tableInner {
+        border-collapse: collapse;
+        border: none;
+      }
+
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+        border: none; /* Hilangkan border pada sel utama */
+      }
+
+      /* Hilangkan border pada td yang kosong */
+      td:empty {
+        border: none;
+      }
+
+      .checkbox-container {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+
+      .signature {
+        margin-top: 20px;
+        text-align: right;
+        margin-right: 50px;
+      }
+      .signature p {
+        margin: 2px 0;
+      }
+
+      /* Atur tampilan cetak */
+      @media print {
+        body {
+          width: 210mm;
+          height: 297mm;
+          margin: 0;
+        }
+
+        .container {
+          padding: 10mm;
+        }
+
+        table {
+          width: 100%;
+        }
+
+        .signature {
+          margin-top: 3mm;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">FORMULIR PERMOHONAN KARTU TANDA PENDUDUK (KTP)</div>
+
+      <table class="no-border">
+        <tr>
+          <td>PROPINSI</td>
+          <td>:</td>
+          <td>
+            <table class="tableInner">
+              <tr>
+                <td class="with-border">6</td>
+                <td class="with-border">4</td>
+                <td class="no-border"></td>
+                <td class="no-border"></td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table class="tableInner">
+              <tr>
+                <td class="with-border">KALIMANTAN TIMUR</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>KABUPATEN/KOTA</td>
+          <td>:</td>
+          <td>
+            <table class="tableInner">
+              <tr>
+                <td class="with-border">0</td>
+                <td class="with-border">2</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table class="tableInner">
+              <tr>
+                <td class="with-border">KUTAI KARTANEGARA</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>KECAMATAN</td>
+          <td>:</td>
+          <td>
+            <table class="tableInner">
+              <tr>
+                <td class="with-border">1</td>
+                <td class="with-border">6</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table class="tableInner">
+              <tr>
+                <td class="with-border">TENGGARONG SEBERANG</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>DESA/KELURAHAN</td>
+          <td>:</td>
+          <td>
+            <table class="tableInner">
+              <tr>
+                <td class="with-border">2</td>
+                <td class="with-border">0</td>
+                <td class="with-border">0</td>
+                <td class="with-border">5</td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table class="tableInner">
+              <tr>
+                <td class="with-border">KERTA BUANA</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+
+      <div class="selection">Permohonan KTP:</div>
+      <div class="checkbox-container">
+        <label>
+          <table class="with-border">
+            <tr>
+              <td class="with-border"></td>
+              <td class="with-border">a. Baru</td>
+            </tr>
+          </table>
+        </label>
+        <label>
+          <table class="with-border">
+            <tr>
+              <td class="with-border"></td>
+              <td class="with-border">b. Perpanjangan</td>
+            </tr>
+          </table>
+        </label>
+        <label>
+          <table class="with-border">
+            <tr>
+              <td class="with-border"></td>
+              <td class="with-border">c. Penggantian</td>
+            </tr>
+          </table>
+        </label>
+      </div>
+
+      <table class="with-border">
+        <tr class="with-border">
+          <th style="width: 150px" class="with-border">1. Nama Lengkap</th>
+          <td class="with-border">{{ nama }}</td>
+        </tr>
+        <tr class="with-border">
+          <th class="with-border">2. No. KK</th>
+          <td class="with-border">{{ nokk }}</td>
+        </tr>
+        <tr class="with-border">
+          <th class="with-border">3. NIK</th>
+          <td class="with-border">{{ nik }}</td>
+        </tr>
+        <tr class="with-border">
+          <th class="with-border">4. Alamat</th>
+          <td class="with-border">{{ alamat }}</td>
+        </tr>
+      </table>
+
+      <div class="data">
+        <table>
+          <tr>
+            <td style="width: 110px; font-weight: normal; text-align: center">
+              Pas Photo 3 X 4
+            </td>
+            <td style="width: 80px; font-weight: normal; text-align: center">
+              Cap Jempol
+            </td>
+            <td style="font-weight: normal">Spesimen Tanda Tangan</td>
+          </tr>
+        </table>
+        <!-- <span>Pas Photo 3 X 4</span>
+            <span>Cap Jempol</span>
+            <span>Spesimen Tanda Tangan</span> -->
+      </div>
+
+      <div class="signature">
+        <p>Kerta Buana, {{date|date:"d F Y"}}</p>
+        <p>Pemohon,</p>
+        <br /><br /><br /><br />
+        <p>{{ nama }}</p>
+      </div>
+
+      <div class="signature">
+        <p>Mengetahui,</p>
+        <p>Kepala Desa Kerta Buana</p>
+        <br /><br />
+        <!--Copy from her for barcode-->
+        <img
+          style="width: 120px; margin-right: 20px"
+          src="{% static 'backend/img/barcode.png' %}"
+          alt="bar"
+        />
+        <p style="position: relative; left: 5px">I Dewa Ketut Adi Basuki</p>
+
+        <!--Until here-->
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,304 @@
+{% extends "backend/base_ui.html" %}{% load static %} {% load custom_filters %}
+{% block konten %}
+
+<div class="pagetitle">
+  <h1>Dashboard</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+      <li class="breadcrumb-item active">Dashboard</li>
+    </ol>
+  </nav>
+</div>
+
+<section class="section dashboard">
+  <div class="row">
+    <!-- Left side columns -->
+    <div class="col-lg-8">
+      <div class="row">
+        <!-- Sales Card -->
+        <div class="col-xxl-4 col-md-6">
+          <div class="card info-card sales-card">
+            <div class="card-body">
+              <h5 class="card-title">User</h5>
+
+              <div class="d-flex align-items-center">
+                <div
+                  class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                >
+                  <i class="bi bi-person-circle"></i>
+                </div>
+                <div class="ps-3">
+                  <h6>{{total_users}}</h6>
+                  <span class="text-muted small pt-2 ps-1">Total User</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Sales Card -->
+
+        <!-- Revenue Card -->
+        <div class="col-xxl-4 col-md-6">
+          <div class="card info-card revenue-card">
+            <div class="card-body">
+              <h5 class="card-title">Surat</h5>
+
+              <div class="d-flex align-items-center">
+                <div
+                  class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                >
+                  <i class="bi bi-file-earmark-text"></i>
+                </div>
+                <div class="ps-3">
+                  <h6>{{total_surat}}</h6>
+                  <span class="text-muted small pt-2 ps-1">Total Surat</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Revenue Card -->
+
+        <!-- Customers Card -->
+        <div class="col-xxl-4 col-xl-12">
+          <div class="card info-card customers-card">
+            <div class="card-body">
+              <h5 class="card-title"><span>Pengaduan</span></h5>
+
+              <div class="d-flex align-items-center">
+                <div
+                  class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                >
+                  <i class="bi bi-megaphone"></i>
+                </div>
+                <div class="ps-3">
+                  <h6>{{total_aduan}}</h6>
+                  <span class="text-muted small pt-2 ps-1">Total Aduan</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Customers Card -->
+
+        <!-- Reports -->
+        <div class="col-12"></div>
+        <!-- End Reports -->
+
+        <!-- Recent Sales -->
+        {% if user.is_superuser %}
+
+        <div class="col-12">
+          <div class="card recent-sales overflow-auto">
+            <div class="card-body">
+              <h5 class="card-title">Surat Terbaru</h5>
+
+              <table class="table table-borderless datatable">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Penulis</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Tipe Surat</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for surat_info in recent_surat %}
+                  <tr>
+                    <td>
+                      <a href="{% get_surat_table_url surat_info.surat %}"
+                        >#{{ surat_info.surat.id }}</a
+                      >
+                    </td>
+                    <td>{{ surat_info.surat.penulis.username }}</td>
+                    <td>{{ surat_info.surat.date }}</td>
+                    <td>{{ surat_info.type }}</td>
+                    {% if surat_info.surat.status == 'review' %}
+                    <td class="text-warning fw-bold">Proses Review</td>
+                    {% elif surat_info.surat.status == 'approved' %}
+                    <td class="text-success fw-bold">Disetujui</td>
+                    {% elif surat_info.surat.status == 'rejected' %}
+                    <td class="text-danger fw-bold">Ditolak</td>
+                    {% endif %}
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        {% else %}
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Pertanyaan Yang Sering Ditanyakan</h5>
+
+              <div class="accordion accordion-flush" id="faq-group-1">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed"
+                      data-bs-target="#faqsOne-1"
+                      type="button"
+                      data-bs-toggle="collapse"
+                    >
+                      Bagaimana cara print/unduh surat?
+                    </button>
+                  </h2>
+                  <div
+                    id="faqsOne-1"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#faq-group-1"
+                  >
+                    <div class="accordion-body">
+                      Print/unduh surat dapat dilakukan setelah disetujui oleh
+                      admin desa.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed"
+                      data-bs-target="#faqsOne-2"
+                      type="button"
+                      data-bs-toggle="collapse"
+                    >
+                      Bagaimana jika suratku ditolak?
+                    </button>
+                  </h2>
+                  <div
+                    id="faqsOne-2"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#faq-group-1"
+                  >
+                    <div class="accordion-body">
+                      Silahkan lakukan edit/pengubahan isi surat sesuai dengan
+                      ketentuan lalu konfirmasi ulang ke admin agar di setujui.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed"
+                      data-bs-target="#faqsOne-3"
+                      type="button"
+                      data-bs-toggle="collapse"
+                    >
+                      Apa yang harus dilakukan ketika salah memasukkan informasi
+                      akun?
+                    </button>
+                  </h2>
+                  <div
+                    id="faqsOne-3"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#faq-group-1"
+                  >
+                    <div class="accordion-body">
+                      Silahkan kunjungi atau kabari admin desa untuk meminta hak
+                      dalam pengubahan informasi akun.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End F.A.Q Group 1 -->
+        </div>
+
+        {% endif %}
+
+        <!-- End Recent Sales -->
+
+        <!-- Top Selling -->
+
+        <!-- End Top Selling -->
+      </div>
+    </div>
+    <!-- End Left side columns -->
+
+    <!-- Right side columns -->
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-body pb-0">
+          <h5 class="card-title">Berita Desa</h5>
+
+          <div class="news">
+            {% for berita in blg %}
+            <div class="post-item clearfix">
+              <img src="{{ berita.picture }}" alt="" />
+              <h4>
+                <a href="{% url 'detail_blog' berita.id %}"
+                  >{{ berita.judul }}</a
+                >
+              </h4>
+              <div
+                style="
+                  display: -webkit-box;
+                  -webkit-line-clamp: 3;
+                  line-clamp: 3;
+                  -webkit-box-orient: vertical;
+                  overflow: hidden;
+                  margin: 0;
+                  padding: 0;
+                  text-align: justify;
+                "
+              >
+                <p style="margin-left: 17px">{{ berita.konten|striptags }}</p>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          <!-- End sidebar recent posts-->
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body pb-0">
+          <h5 class="card-title">Pengumuman</h5>
+
+          <div class="news">
+            {% for annc in annc %}
+            <div class="post-item clearfix">
+              <img src="{{ annc.picture }}" alt="" />
+              <h4>
+                <a href="{% url 'detail_pengumuman' annc.id %}"
+                  >{{ annc.judul }}</a
+                >
+              </h4>
+              <div
+                style="
+                  display: -webkit-box;
+                  -webkit-line-clamp: 3;
+                  line-clamp: 3;
+                  -webkit-box-orient: vertical;
+                  overflow: hidden;
+                  margin: 0;
+                  padding: 0;
+                  text-align: justify;
+                "
+              >
+                <p style="margin-left: 17px">{{ annc.konten|striptags }}</p>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          <!-- End sidebar recent posts-->
+        </div>
+      </div>
+      <!-- End News & Updates -->
+
+      <!-- End Website Traffic -->
+
+      <!-- News & Updates Traffic -->
+    </div>
+    <!-- End Right side columns -->
+  </div>
+</section>
+<!-- End Page Title -->
+
+{% endblock konten %}

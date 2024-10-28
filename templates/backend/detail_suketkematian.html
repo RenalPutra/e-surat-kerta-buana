@@ -1,0 +1,169 @@
+{% extends "backend/base_ui.html" %} {% load static %} {% load custom_filters %}
+{% block konten %}
+
+<div class="pagetitle">
+  <h1>Surat Keterangan Kematian</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+      <li class="breadcrumb-item active">Surat Keterangan Kematian</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+
+<section class="section profile">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-body pt-3">
+          <!-- Bordered Tabs -->
+
+          <div class="tab-content pt-2">
+            <div class="tab-pane fade show active profile-overview" id="profile-overview">
+              <h5 class="card-title">Detail Surat Keterangan Kematian</h5>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Nama</div>
+                <div class="col-lg-10 col-md-9">{{ suket.nama }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">NIP</div>
+                <div class="col-lg-10 col-md-9">{{ suket.nip }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Jabatan</div>
+                <div class="col-lg-10 col-md-9">{{ suket.jabatan }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">No KK</div>
+                <div class="col-lg-10 col-md-9">{{ suket.nokk }}</div>
+              </div>
+
+              <hr>
+
+              <h6 class="card-title">Detail Almarhum</h6>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Nama Almarhum</div>
+                <div class="col-lg-10 col-md-9">{{ suket.namaalm }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">NIK Almarhum</div>
+                <div class="col-lg-10 col-md-9">{{ suket.nikalm }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Tempat, Tanggal Lahir Almarhum</div>
+                <div class="col-lg-10 col-md-9">{{ suket.ttlalm }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Agama Almarhum</div>
+                <div class="col-lg-10 col-md-9">{{ suket.agamaalm }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Anak Ke</div>
+                <div class="col-lg-10 col-md-9">{{ suket.anakkealm }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Nama Ibu Almarhum</div>
+                <div class="col-lg-10 col-md-9">{{ suket.ibualm }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Nama Ayah Almarhum</div>
+                <div class="col-lg-10 col-md-9">{{ suket.ayahalm }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Pekerjaan Almarhum</div>
+                <div class="col-lg-10 col-md-9">{{ suket.pekerjaanalm }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Kewarganegaraan Almarhum</div>
+                <div class="col-lg-10 col-md-9">{{ suket.kewarganegaraanalm }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Alamat Almarhum</div>
+                <div class="col-lg-10 col-md-9">{{ suket.alamatalm }}</div>
+              </div>
+
+              <hr>
+
+              <h6 class="card-title">Informasi Kematian</h6>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Tanggal Kematian</div>
+                <div class="col-lg-10 col-md-9">{{ suket.tanggal_kematian }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Jam Kematian</div>
+                <div class="col-lg-10 col-md-9">{{ suket.jam_kematian }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Tempat Kematian</div>
+                <div class="col-lg-10 col-md-9">{{ suket.tempat_kematian }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Penyebab Kematian</div>
+                <div class="col-lg-10 col-md-9">{{ suket.penyebab_kematian }}</div>
+              </div>
+
+              <hr>
+
+              <h6 class="card-title">Informasi Pemakaman</h6>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Tempat Pemakaman</div>
+                <div class="col-lg-10 col-md-9">{{ suket.tmptmakam }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Tanggal Pemakaman</div>
+                <div class="col-lg-10 col-md-9">{{ suket.tanggal_pmkn }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Jam Pemakaman</div>
+                <div class="col-lg-10 col-md-9">{{ suket.jam_pmkn }}</div>
+              </div>
+
+              <hr>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Pengantar RT</div>
+                <div class="col-lg-10 col-md-9">
+                  <a href="{{ suket.pengantarrt }}">{{ suket.pengantarrt|filename }}</a>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Scan KK</div>
+                <div class="col-lg-10 col-md-9">
+                  <a href="{{ suket.scankk }}">{{ suket.scankk|filename }}</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <!-- End Bordered Tabs -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- End #main -->
+{% endblock konten %}

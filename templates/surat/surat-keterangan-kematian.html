@@ -1,0 +1,225 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{% static 'backend/css/ketkematian.css' %}"
+    />
+    <title>Surat Keterangan Kematian</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <img
+          src="{% static 'backend/img/logokukar.png' %}"
+          alt="Logo Pemerintah"
+        />
+        <h1 style="font-size: 18px; font-weight: bold; margin: 0">
+          PEMERINTAH KABUPATEN KUTAI KARTANEGARA
+        </h1>
+        <h1 style="font-size: 18px; font-weight: bold; margin: 0">
+          KECAMATAN TENGGARONG SEBERANG
+        </h1>
+        <h1
+          style="
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+            letter-spacing: 5px;
+          "
+        >
+          DESA KERTA BUANA
+        </h1>
+        <p class="address">
+          Jl. Raya Utama Dusun Budi Daya RT. 22 Blok D Kode Pos 75262
+        </p>
+      </div>
+
+      <div class="content">
+        <h2>SURAT KETERANGAN KEMATIAN</h2>
+        <p style="text-align: center">
+          Nomor: &emsp;&emsp;&emsp; /64.02.16.2005-PD/Ket./&emsp;&emsp;&emsp;/
+          {{date|date:"Y"}}
+        </p>
+
+        <p style="text-align: justify">Yang bertanda tangan dibawah ini:</p>
+
+        <div class="details-n">
+          <table>
+            <tr>
+              <td></td>
+              <td>Nama</td>
+              <td>:</td>
+              <td>{{ nama }}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>NIP</td>
+              <td>:</td>
+              <td>{{ nip }}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Jabatan</td>
+              <td>:</td>
+              <td>{{ jabatan }}</td>
+            </tr>
+          </table>
+        </div>
+        <p style="text-align: justify">
+          Berdasarkan bukti dokumen administrasi kependudukan terlampir berupa
+          fotocopy Kartu Keluarga (KK) Nomor <b>KK </b>{{ nokk }} menerangkan
+          dengan sebenar-benarnya bahwa:
+        </p>
+
+        <div class="details">
+          <table>
+            <tr>
+              <td>1.</td>
+              <td>Nama Alm/ALmh*</td>
+              <td>:</td>
+              <td>{{ namaalm }}</td>
+            </tr>
+            <tr>
+              <td>2.</td>
+              <td>NIK</td>
+              <td>:</td>
+              <td>{{ nikalm }}</td>
+            </tr>
+            <tr>
+              <td>3.</td>
+              <td>Tempat / Tgl Lahir</td>
+              <td>:</td>
+              <td>{{ ttlalm }}</td>
+            </tr>
+            <tr>
+              <td>4.</td>
+              <td>Agama</td>
+              <td>:</td>
+              <td>{{ agamaalm }}</td>
+            </tr>
+            <tr>
+              <td>5.</td>
+              <td>Anak ke</td>
+              <td>:</td>
+              <td>{{ anakkealm }}</td>
+            </tr>
+            <tr>
+              <td>7.</td>
+              <td>Nama Orang Tua</td>
+              <td>:</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Ayah</td>
+              <td>:</td>
+              <td>{{ ayahalm }}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Ibu</td>
+              <td>:</td>
+              <td>{{ ibualm }}</td>
+            </tr>
+            <tr>
+              <td>8.</td>
+              <td>Pekerjaan</td>
+              <td>:</td>
+              <td>{{ pekerjaanalm }}</td>
+            </tr>
+            <tr>
+              <td>9.</td>
+              <td>Kewarganegaraan</td>
+              <td>:</td>
+              <td>{{ kewarganegaraanalm }}</td>
+            </tr>
+            <tr>
+              <td>10.</td>
+              <td>Alamat</td>
+              <td>:</td>
+              <td>{{ alamatalm }}</td>
+            </tr>
+          </table>
+        </div>
+
+        <p style="text-align: justify">
+          Nama tersebut diatas memang benar telah meninggal dunia pada :
+        </p>
+        <div class="details">
+          <table>
+            <tr>
+              <td>1.</td>
+              <td>Hari / Tgl Kematian</td>
+              <td>:</td>
+              <td>{{ tanggal_kematian }}</td>
+            </tr>
+            <tr>
+              <td>2.</td>
+              <td>Jam</td>
+              <td>:</td>
+              <td>{{ jam_kematian }}</td>
+            </tr>
+            <tr>
+              <td>3.</td>
+              <td>Tempat Kematian</td>
+              <td>:</td>
+              <td>{{ tempat_kematian }}</td>
+            </tr>
+            <tr>
+              <td>4.</td>
+              <td>Penyebab Kematian</td>
+              <td>:</td>
+              <td>{{ penyebab_kematian }}</td>
+            </tr>
+            <tr>
+              <td>5.</td>
+              <td>Dimakamkan di</td>
+              <td>:</td>
+              <td>{{ tmptmakam }}</td>
+            </tr>
+            <tr>
+              <td>6.</td>
+              <td>Hari / Tgl Pemakaman</td>
+              <td>:</td>
+              <td>{{ tanggal_pmkn }}</td>
+            </tr>
+            <tr>
+              <td>7.</td>
+              <td>Jam</td>
+              <td>:</td>
+              <td>{{ jam_pmkn }}</td>
+            </tr>
+          </table>
+        </div>
+
+        <p style="text-align: justify">
+          Surat keterangan ini dibuat berdasarkan bukti/fotocopy dokumen
+          administrasi terlampir maupun pernyataan/keterangan dari pelapor/yang
+          memberikan keterangan.
+        </p>
+        <p style="text-align: justify">
+          Demikian surat keterangan ini dibuat dan diberikan agar dapat
+          diketahui serta dipergunakan sebagaimana mestinya.
+        </p>
+      </div>
+
+      <div class="signature">
+        <p>Kerta Buana, {{date|date:"d F Y"}}</p>
+        <p>Kepala Desa Kerta Buana</p>
+        <!--Copy from her for barcode-->
+        <img
+          style="width: 120px; margin-right: 30px"
+          src="{% static 'backend/img/barcode.png' %}"
+          alt="bar"
+        />
+        <p style="position: relative; left: 5px">I Dewa Ketut Adi Basuki</p>
+
+        <!--Until here-->
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,119 @@
+{% extends "backend/base_ui.html" %} {% load static %} {% load custom_filters %}
+{% block konten %}
+
+<div class="pagetitle">
+  <h1>Surat Keterangan Usaha</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+      <li class="breadcrumb-item active">Surat Keterangan Usaha</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+<section class="section profile">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-body pt-3">
+          <!-- Bordered Tabs -->
+
+          <div class="tab-content pt-2">
+            <div class="tab-pane fade show active profile-overview" id="profile-overview">
+              <h5 class="card-title">Detail Surat Keterangan Usaha</h5>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Nama</div>
+                <div class="col-lg-10 col-md-9">{{ suket.nama }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Umur</div>
+                <div class="col-lg-10 col-md-9">{{ suket.umur }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Pekerjaan</div>
+                <div class="col-lg-10 col-md-9">{{ suket.pekerjaan }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Alamat</div>
+                <div class="col-lg-10 col-md-9">{{ suket.alamat }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Jenis Usaha</div>
+                <div class="col-lg-10 col-md-9">{{ suket.jenisusaha }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Tahun Berdiri</div>
+                <div class="col-lg-10 col-md-9">{{ suket.tahunberdiri }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Jumlah Modal</div>
+                <div class="col-lg-10 col-md-9">{{ suket.jumlahmodal }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Alamat Usaha</div>
+                <div class="col-lg-10 col-md-9">{{ suket.alamatusaha }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">NPWP</div>
+                <div class="col-lg-10 col-md-9">{{ suket.npnpwp }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">No. Telepon</div>
+                <div class="col-lg-10 col-md-9">{{ suket.notelepon }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Jumlah Karyawan</div>
+                <div class="col-lg-10 col-md-9">{{ suket.jumlahkaryawan }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Keterangan</div>
+                <div class="col-lg-10 col-md-9">{{ suket.keterangan }}</div>
+              </div>
+
+              <hr>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Pengantar RT</div>
+                <div class="col-lg-10 col-md-9">
+                  <a href="{{ suket.pengantarrt }}">{{ suket.pengantarrt|filename }}</a>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Scan KTP</div>
+                <div class="col-lg-10 col-md-9">
+                  <a href="{{ suket.scanktp }}">{{ suket.scanktp|filename }}</a>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Foto Usaha</div>
+                <div class="col-lg-10 col-md-9">
+                  <a href="{{ suket.fotousaha }}">{{ suket.fotousaha|filename }}</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <!-- End Bordered Tabs -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- End #main -->
+{% endblock konten %}

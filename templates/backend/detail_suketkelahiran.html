@@ -1,0 +1,208 @@
+{% extends "backend/base_ui.html" %} {% load static %} {% load custom_filters %}
+{% block konten %}
+
+<div class="pagetitle">
+  <h1>Surat Keterangan Kelahiran</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+      <li class="breadcrumb-item active">Surat Keterangan Kelahiran</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+
+<section class="section profile">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-body pt-3">
+          <!-- Bordered Tabs -->
+
+          <div class="tab-content pt-2">
+            <div
+              class="tab-pane fade show active profile-overview"
+              id="profile-overview"
+            >
+              <h5 class="card-title">Detail Surat Keterangan Kelahiran</h5>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Nama Bayi</div>
+                <div class="col-lg-10 col-md-9">{{ suket.namab }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Jenis Kelamin Bayi</div>
+                <div class="col-lg-10 col-md-9">{{ suket.jenis_kelaminb }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Tanggal Lahir Bayi</div>
+                <div class="col-lg-10 col-md-9">{{ suket.tanggal_lahirb }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Tempat Lahir Bayi</div>
+                <div class="col-lg-10 col-md-9">{{ suket.tempat_lahirb }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Agama Bayi</div>
+                <div class="col-lg-10 col-md-9">{{ suket.agamab }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Alamat Bayi</div>
+                <div class="col-lg-10 col-md-9">{{ suket.alamatb }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Anak ke</div>
+                <div class="col-lg-10 col-md-9">{{ suket.anakke }}</div>
+              </div>
+
+              <hr />
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Nama Ayah</div>
+                <div class="col-lg-10 col-md-9">{{ suket.namaa }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Umur Ayah</div>
+                <div class="col-lg-10 col-md-9">{{ suket.umura }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Pekerjaan Ayah</div>
+                <div class="col-lg-10 col-md-9">{{ suket.pekerjaana }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Alamat Ayah</div>
+                <div class="col-lg-10 col-md-9">{{ suket.alamata }}</div>
+              </div>
+
+              <hr />
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Nama Ibu</div>
+                <div class="col-lg-10 col-md-9">{{ suket.namai }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Umur Ibu</div>
+                <div class="col-lg-10 col-md-9">{{ suket.umuri }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Pekerjaan Ibu</div>
+                <div class="col-lg-10 col-md-9">{{ suket.pekerjaani }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Alamat Ibu</div>
+                <div class="col-lg-10 col-md-9">{{ suket.alamati }}</div>
+              </div>
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Peryaratan melengkapi</div>
+                <div class="col-lg-10 col-md-9">{{ suket.persyaratan }}</div>
+              </div>
+
+              <hr />
+              <p class="text-secondary fw-bold">Berkas Bayi</p>
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Scan KK Bayi</div>
+                <div class="col-lg-10 col-md-9">
+                  <a href="{{ suket.kkb }}">{{ suket.kkb|filename }}</a>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">
+                  Scan FC Buku Nikah Ortu Bayi
+                </div>
+                <div class="col-lg-10 col-md-9">
+                  <a href="{{ suket.scanfcbnb }}"
+                    >{{ suket.scanfcbnb|filename }}</a
+                  >
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Scan KTP Ortu Bayi</div>
+                <div class="col-lg-10 col-md-9">
+                  <a href="{{ suket.scanfcktportub }}"
+                    >{{ suket.scanfcktportub|filename }}</a
+                  >
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Scan KTP Saksi 1 Bayi</div>
+                <div class="col-lg-10 col-md-9">
+                  <a href="{{ suket.scanfcktpsaksib1 }}"
+                    >{{ suket.scanfcktpsaksib1|filename }}</a
+                  >
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Scan KTP Saksi 2 Bayi</div>
+                <div class="col-lg-10 col-md-9">
+                  <a href="{{ suket.scanfcktpsaksib2 }}"
+                    >{{ suket.scanfcktpsaksib2|filename }}</a
+                  >
+                </div>
+              </div>
+
+              <hr />
+              <p class="text-secondary fw-bold">Berkas Dewasa</p>
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Scan KK Dewasa</div>
+                <div class="col-lg-10 col-md-9">
+                  <a href="{{ suket.kkd }}">{{ suket.kkd|filename }}</a>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Scan KTP Ortu Dewasa</div>
+                <div class="col-lg-10 col-md-9">
+                  <a href="{{ suket.kk_ktportud }}"
+                    >{{ suket.kk_ktportud|filename }}</a
+                  >
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">
+                  Scan KTP Saksi 1 Dewasa
+                </div>
+                <div class="col-lg-10 col-md-9">
+                  <a href="{{ suket.scanfcktpsaksid1 }}"
+                    >{{ suket.scanfcktpsaksid1|filename }}</a
+                  >
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">
+                  Scan KTP Saksi 2 Dewasa
+                </div>
+                <div class="col-lg-10 col-md-9">
+                  <a href="{{ suket.scanfcktpsaksid2 }}"
+                    >{{ suket.scanfcktpsaksid2|filename }}</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Bordered Tabs -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- End #main -->
+{% endblock konten %}

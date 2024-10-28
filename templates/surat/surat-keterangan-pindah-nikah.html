@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'backend/css/suketpindahnikah.css' %}">
+    <title>Surat Keterangan Pindah Nikah</title>
+   
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <img src="{% static 'backend/img/logokukar.png' %}" alt="Logo Pemerintah" />
+        <h1 style="font-size: 18px; font-weight: bold; margin: 0">
+          PEMERINTAH KABUPATEN KUTAI KARTANEGARA
+        </h1>
+        <h1 style="font-size: 18px; font-weight: bold; margin: 0">
+          KECAMATAN TENGGARONG SEBERANG
+        </h1>
+        <h1
+          style="
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+            letter-spacing: 5px;
+          "
+        >
+          DESA KERTA BUANA
+        </h1>
+        <p class="address">
+          Jl. Raya Utama Dusun Budi Daya RT. 22 Blok D Kode Pos 75262
+        </p>
+      </div>
+
+      <div class="content">
+        <h2>SURAT KETERANGAN PINDAH NIKAH</h2>
+        <p style="text-align: center; padding-bottom: 20px">
+          Nomor: &emsp;&emsp;&emsp;/64.02.16.2005-PD/Ket./&emsp;&emsp;&emsp;/ {{date|date:"Y"}}
+        </p>
+
+        <p style="text-indent: 30px; text-align: justify; margin-bottom: -20px">
+          Yang bertanda tangan dibawah ini Kepala Desa Kerta Buana Kecamatan
+          Tenggarong Seberang Kabupaten Kutai Kartanegara, Menerangkan bahwa :
+        </p>
+
+        <div class="details">
+          <table>
+            <tr>
+              <td>Nama</td>
+              <td>:</td>
+              <td>{{nama1}}</td>
+            </tr>
+            <tr>
+              <td>Tempat tanggal lahir</td>
+              <td>:</td>
+              <td>{{ ttl1 }}</td>
+            </tr>
+            <tr>
+              <td>Jenis Kelamin</td>
+              <td>:</td>
+              <td>{{ jenis_kelamin1 }}</td>
+            </tr>
+            <tr>
+              <td>Agama</td>
+              <td>:</td>
+              <td>{{ agama1 }}</td>
+            </tr>
+            <tr>
+              <td>Pekerjaan</td>
+              <td>:</td>
+              <td>{{ pekerjaan1 }}</td>
+            </tr>
+
+            <tr>
+              <td>Alamat</td>
+              <td>:</td>
+              <td>{{ alamat1 }}</td>
+            </tr>
+          </table>
+        </div>
+
+        <p style="text-indent: 30px; text-align: justify">
+          Kami atas nama Pemerintah Desa Kerta Buana tidak berkeberatan atas
+          berlangsungnya pernikahan tersebut diatas diluar Desa Kerta Buana.
+        </p>
+        <p style="text-indent: 30px; text-align: justify; margin-bottom: -20px">
+          Adapun calon Istri yang akan Dinikahi adalah :
+        </p>
+
+        <div class="details">
+          <table>
+            <tr>
+              <td>Nama</td>
+              <td>:</td>
+              <td>{{nama2}}</td>
+            </tr>
+            <tr>
+              <td>Tempat tanggal lahir</td>
+              <td>:</td>
+              <td>{{ ttl2 }}</td>
+            </tr>
+            <tr>
+              <td>Jenis Kelamin</td>
+              <td>:</td>
+              <td>{{ jenis_kelamin2 }}</td>
+            </tr>
+            <tr>
+              <td>Agama</td>
+              <td>:</td>
+              <td>{{ agama2 }}</td>
+            </tr>
+            <tr>
+              <td>Pekerjaan</td>
+              <td>:</td>
+              <td>{{ pekerjaan2}}</td>
+            </tr>
+
+            <tr>
+              <td>Alamat</td>
+              <td>:</td>
+              <td>{{ alamat2 }}</td>
+            </tr>
+          </table>
+        </div>
+        <p style="text-indent: 30px; text-align: justify">
+          Demikian surat keterangan ini dibuat dengan sebenarnya dan agar dapat
+          dipergunakan sebagaimana mestinya.
+        </p>
+      </div>
+
+      <div class="signature">
+        <p>Kerta Buana, {{date|date:"d F Y"}}</p>
+        <p>Kepala Desa Kerta Buana</p>
+        <!--Copy from her for barcode-->
+        <img
+          style="width: 120px; margin-right: 30px"
+          src="{% static 'backend/img/barcode.png' %}"
+          alt="bar"
+        />
+        <p style="position: relative; left: 5px">I Dewa Ketut Adi Basuki</p>
+
+        <!--Until here-->
+      </div>
+    </div>
+  </body>
+</html>

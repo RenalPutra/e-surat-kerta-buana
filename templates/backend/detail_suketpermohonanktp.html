@@ -1,0 +1,78 @@
+{% extends "backend/base_ui.html" %} {% load static %} {% load custom_filters %}
+{% block konten %}
+
+<div class="pagetitle">
+  <h1>Form Permohonan KTP</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+      <li class="breadcrumb-item active">Form Permohonan KTP</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+
+<section class="section profile">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-body pt-3">
+          <!-- Bordered Tabs -->
+
+          <div class="tab-content pt-2">
+            <div class="tab-pane fade show active profile-overview" id="profile-overview">
+              <h5 class="card-title">Detail Data Form Permohonan KTP</h5>
+
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Nama Lengkap</div>
+                <div class="col-lg-10 col-md-9">{{ suket.nama }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">No. KK</div>
+                <div class="col-lg-10 col-md-9">{{ suket.nokk }}</div>
+              </div>
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">NIK</div>
+                <div class="col-lg-10 col-md-9">{{ suket.nik }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Alamat</div>
+                <div class="col-lg-10 col-md-9">{{ suket.alamat }}</div>
+              </div>
+
+             
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Pengantar RT</div>
+                <div class="col-lg-10 col-md-9">
+                  <a href="{{ suket.pengantarrt }}">
+                    {{ suket.pengantarrt|filename }}</a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Scan KK</div>
+                <div class="col-lg-10 col-md-9">
+                  <a href="{{ suket.scankk }}">
+                    {{ suket.scankk|filename }}</a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Scan Ijasah/Akta</div>
+                <div class="col-lg-10 col-md-9">
+                  <a href="{{ suket.scanijasahakta }}">
+                    {{ suket.scanijasahakta|filename }}</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <!-- End Bordered Tabs -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- End #main -->
+{% endblock konten %}

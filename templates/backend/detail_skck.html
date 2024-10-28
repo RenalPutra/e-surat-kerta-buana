@@ -1,0 +1,101 @@
+{% extends "backend/base_ui.html" %} {% load static %} {% load custom_filters %}
+{% block konten %}
+
+<div class="pagetitle">
+  <h1>SKCK</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+      <li class="breadcrumb-item active">SKCK</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+
+<section class="section profile">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-body pt-3">
+          <!-- Bordered Tabs -->
+
+          <div class="tab-content pt-2">
+            <div
+              class="tab-pane fade show active profile-overview"
+              id="profile-overview"
+            >
+              <h5 class="card-title">Detail Data SKCK</h5>
+
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Nama</div>
+                <div class="col-lg-10 col-md-9">{{ skck.nama }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Jenis Kelamin</div>
+                <div class="col-lg-10 col-md-9">{{ skck.jenis_kelamin }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Tempat Tanggal Lahir</div>
+                <div class="col-lg-10 col-md-9">{{ skck.ttl }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Suku/Bangsa</div>
+                <div class="col-lg-10 col-md-9">{{ skck.suku }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Agama</div>
+                <div class="col-lg-10 col-md-9">{{ skck.agama }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">NIK</div>
+                <div class="col-lg-10 col-md-9">{{ skck.nik }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Alamat</div>
+                <div class="col-lg-10 col-md-9">{{ skck.alamat }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Pekerjaan</div>
+                <div class="col-lg-10 col-md-9">{{ skck.pekerjaan }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Status Kawin</div>
+                <div class="col-lg-10 col-md-9">{{ skck.kawin }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Pendidikan Terakhir</div>
+                <div class="col-lg-10 col-md-9">
+                  {{ skck.pendidikanterakhir }}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">Persyaratan</div>
+                <div class="col-lg-10 col-md-9">{{ skck.persyaratan }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-1 col-md-3 label">KTP</div>
+                <div class="col-lg-10 col-md-9">
+                  <a href="{{ skck.scanktp }}"> {{ skck.scanktp|filename }}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Bordered Tabs -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- End #main -->
+{% endblock konten %}

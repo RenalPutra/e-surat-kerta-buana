@@ -1,0 +1,66 @@
+{% extends "backend/base_ui.html" %} {% load static %} {% load custom_filters %}
+{% block konten %}
+
+<div class="pagetitle">
+  <h1>Surat Keterangan Rekomendasi Kelompok Tani</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+      <li class="breadcrumb-item active">Surat Keterangan Rekomendasi Kelompok Tani</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+
+<section class="section profile">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-body pt-3">
+          <!-- Bordered Tabs -->
+
+          <div class="tab-content pt-2">
+            <div class="tab-pane fade show active profile-overview" id="profile-overview">
+              <h5 class="card-title">Detail Surat Keterangan Rekomendasi Kelompok Tani</h5>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Nama</div>
+                <div class="col-lg-10 col-md-9">{{ suket.nama }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Jabatan</div>
+                <div class="col-lg-10 col-md-9">{{ suket.jabatan }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Sekretariat</div>
+                <div class="col-lg-10 col-md-9">{{ suket.sekretariat }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Tempat</div>
+                <div class="col-lg-10 col-md-9">{{ suket.tempat }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Bantuan</div>
+                <div class="col-lg-10 col-md-9">{{ suket.bantuan }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Tujuan</div>
+                <div class="col-lg-10 col-md-9">{{ suket.tujuan }}</div>
+              </div>
+
+            </div>
+          </div>
+          <!-- End Bordered Tabs -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- End #main -->
+{% endblock konten %}

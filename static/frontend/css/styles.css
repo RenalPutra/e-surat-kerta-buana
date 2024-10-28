@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+body {
+  font-family: "Nunito", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #fafafa;
+}
+
+.jumbtron {
+  background: linear-gradient(rgba(0, 0, 0, 0.727), rgba(0, 0, 0, 0.7)),
+    url("../gambar/sawah.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  object-position: center;
+  height: auto;
+}
+
+.logo-kecil {
+  width: 55px;
+  height: auto;
+}
+
+.logo-besar {
+  width: 80px;
+  height: auto;
+  max-width: 100%;
+}
+
+.bg-custom {
+  background-color: #343a40;
+}
+
+.w-small {
+  font-size: 13px;
+}
+
+.select-container {
+  display: none;
+}
+
+.shadow-green {
+  box-shadow: 0 8px 10px rgba(34, 197, 94, 0.7);
+}
+
+.shadow-black {
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); /* Meniru shadow-lg Bootstrap dengan warna hitam */
+}
+
+.kepaldes {
+  width: 28rem;
+  height: auto; /* Ukuran untuk layar kecil (>= 576px, seperti ponsel) */
+}
+
+.cr {
+  object-fit: cover;
+  object-position: inherit;
+  height: 300px;
+}
+
+.footer {
+  background-color: #f1f1f1;
+}
+.navbar {
+  position: fixed; /* Navbar tetap di atas saat scroll */
+  top: 0; /* Menempel di bagian atas viewport */
+  width: 100%; /* Memastikan lebar penuh */
+  z-index: 1020; /* Supaya navbar berada di atas elemen lain */
+  transition: background-color 0.3s ease; /* Transisi halus untuk perubahan warna */
+}
+
+.navbar.scrolled {
+  background-color: black !important;
+}
+
+.body-content {
+  padding-top: 100px; /* Sesuaikan dengan tinggi navbar */
+}
+@media (min-width: 576px) {
+  .logo-besar {
+    width: 130px;
+  }
+}
+
+@media (min-width: 768px) {
+  .logo-besar {
+    width: 120px;
+  }
+
+  .kepaldes {
+    width: 28rem;
+    height: auto; /* Ukuran untuk layar sedang (>= 768px, seperti tablet) */
+  }
+}
+@media (max-width: 768px) {
+  .shadow-black {
+    box-shadow: 0 0px 00px rgba(255, 255, 255, 0);
+  }
+}
+
+@media (min-width: 992px) {
+  .bg-custom {
+    background-color: transparent;
+  }
+
+  .kepaldes {
+    width: 28rem;
+    height: 25rem;
+  }
+  .pondok {
+    width: 28rem;
+  }
+}
+@media (max-width: 1400px) {
+  .grid-container {
+    display: none; /* Hide grid on tablet and smaller */
+  }
+  .select-container {
+    display: block; /* Show select on tablet and smaller */
+  }
+}
+
+@media (max-width: 1200px) {
+  .pondok {
+    display: none;
+  }
+}
+
+@layer utilities {
+  .clip-irregular {
+    @apply overflow-hidden;
+    clip-path: polygon(38% 0, 71% 9%, 80% 61%, 65% 92%, 11% 93%, 0% 60%, 8% 9%);
+  }
+}

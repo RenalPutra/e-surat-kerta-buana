@@ -1,0 +1,84 @@
+{% extends "backend/base_ui.html" %} {% load static %} {% load custom_filters %}
+{% block konten %}
+
+<div class="pagetitle">
+  <h1>Surat Keterangan MTQ</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+      <li class="breadcrumb-item active">Surat Keterangan MTQ</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+
+<section class="section profile">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-body pt-3">
+          <!-- Bordered Tabs -->
+
+          <div class="tab-content pt-2">
+            <div
+              class="tab-pane fade show active profile-overview"
+              id="profile-overview"
+            >
+              <h5 class="card-title">Detail Surat Keterangan MTQ</h5>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Nama</div>
+                <div class="col-lg-10 col-md-9">{{ suket.nama }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Jenis Kelamin</div>
+                <div class="col-lg-10 col-md-9">{{ suket.jenis_kelamin }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Tempat Tanggal Lahir</div>
+                <div class="col-lg-10 col-md-9">{{ suket.ttl }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Suku</div>
+                <div class="col-lg-10 col-md-9">{{ suket.suku }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Agama</div>
+                <div class="col-lg-10 col-md-9">{{ suket.agama }}</div>
+              </div>
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Pekerjaan</div>
+                <div class="col-lg-10 col-md-9">{{ suket.pekerjaan }}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Alamat</div>
+                <div class="col-lg-10 col-md-9">{{ suket.alamat }}</div>
+              </div>
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Dusun</div>
+                <div class="col-lg-10 col-md-9">{{ suket.dusun }}</div>
+              </div>
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">Tahun menetap</div>
+                <div class="col-lg-10 col-md-9">{{ suket.tahunmenetap }}</div>
+              </div>
+              <div class="row">
+                <div class="col-lg-2 col-md-3 label">keperluan</div>
+                <div class="col-lg-10 col-md-9">{{ suket.keperluan }}</div>
+              </div>
+            </div>
+          </div>
+          <!-- End Bordered Tabs -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- End #main -->
+{% endblock konten %}
